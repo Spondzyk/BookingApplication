@@ -1,0 +1,38 @@
+.toolbar {
+  border-top: 3px solid black;
+  height: 70px;
+  display: flex;
+
+  &__vl {
+      border-left: 3px solid black;
+      height: 40px;
+      margin-left: 15px;
+      margin-right: 15px;
+  }
+
+  &__disabled-button {
+    display: flex;
+    min-width: 120px;
+    height: 40px;
+
+    &__text {
+      margin: auto;
+      font-size: 18px;
+      display: flex;
+      color: white;
+    }
+  }
+
+  &__enabled-button {
+    display: flex;
+    min-width: 120px;
+    height: 40px;
+
+    &__text {
+      margin: auto;
+      font-size: 18px;
+      display: flex;
+      color: red;
+    }
+  }
+}

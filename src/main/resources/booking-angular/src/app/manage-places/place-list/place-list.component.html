@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="container__buttons">
+    <button mat-button
+            color="primary"
+            class="container__buttons__back-button"
+            (click)="return()">
+      <mat-icon class="container__buttons__back-button__icon">keyboard_arrow_left</mat-icon>
+      <p class="container__buttons__back-button__text">Powrót</p>
+    </button>
+
+    <button mat-raised-button
+            color="primary"
+            class="container__buttons__new-place-button"
+            (click)="newPlace()">
+      <p class="container__buttons__new-place-button__name">Dodaj obiekt</p>
+    </button>
+  </div>
+
+
+  <p class="container__title">Twoje obiekty</p>
+
+  <button (click)="singlePlace()">single place</button>
+
+  <div class="list row">
+    <div class="col-md-6">
+      <h4>Places List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let place of places"
+        >
+          {{ place.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  margin: auto;
+  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    justify-content: space-between;
+
+    &__back-button {
+      display: flex;
+      flex-direction: row;
+      width: 200px;
+      height: 40px;
+
+      &__icon {
+        padding-bottom: 10px;
+        font-size: 24px;
+      }
+
+      &__text {
+        margin: auto;
+        font-size: 20px;
+      }
+    }
+
+    &__new-place-button {
+      width: 200px;
+      height: 40px;
+      display: flex;
+
+      &__name {
+        display: flex;
+        margin: auto;
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__title {
+    display: flex;
+    font-size: 26px;
+    font-weight: bold;
+    justify-content: flex-start;
+    margin-left: 100px;
+  }
+}

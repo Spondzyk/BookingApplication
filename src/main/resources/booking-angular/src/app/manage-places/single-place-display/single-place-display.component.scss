@@ -1,0 +1,63 @@
+.container {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+  &__bar {
+    margin-top: 50px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__back-button {
+      display: flex;
+      flex-direction: row;
+      width: 200px;
+      height: 40px;
+
+      &__icon {
+        padding-bottom: 10px;
+        font-size: 24px;
+      }
+
+      &__text {
+        margin: auto;
+        font-size: 20px;
+      }
+    }
+
+    &__option-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 20px;
+
+      &__button {
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+        height: 40px;
+
+        &__text {
+          margin: auto;
+          font-size: 20px;
+        }
+      }
+
+      &__edit-icon {
+        display: flex;
+        width: 40px;
+        height: 40px;
+
+        &__icon {
+          display: flex;
+          margin: auto;
+          width: 40px;
+          height: 40px;
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}

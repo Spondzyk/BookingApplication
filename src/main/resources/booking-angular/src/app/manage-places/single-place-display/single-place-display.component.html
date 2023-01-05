@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="container__bar">
+    <button mat-button
+            color="primary"
+            class="container__bar__back-button"
+            (click)="return()">
+      <mat-icon class="container__bar__back-button__icon">keyboard_arrow_left</mat-icon>
+      <p class="container__bar__back-button__text">Powrót</p>
+    </button>
+    <div class="container__bar__option-buttons">
+      <button mat-raised-button
+              color="primary"
+              class="container__bar__option-buttons__button"
+              (click)="deleteBtn()">
+        <p class="container__bar__option-buttons__button__text">Usuń obiekt</p>
+      </button>
+      <button mat-button
+              color="primary"
+              class="container__bar__option-buttons__edit-icon"
+              (click)="editBtn()">
+        <mat-icon class="container__bar__option-buttons__edit-icon__icon">edit</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

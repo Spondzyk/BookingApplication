@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="container__title">
+    <p mat-dialog-title
+       class="container__title__text">
+      Usunięcie obiektu
+    </p>
+  </div>
+
+  <div mat-dialog-content class="container__description">
+    <p class="container__description__text">
+      Czy potwierdzasz usunięcie obiektu?
+    </p>
+  </div>
+
+  <div class="container__hl"></div>
+
+  <div mat-dialog-actions class="container__buttons">
+    <button mat-flat-button
+            mat-dialog-close
+            (click)="noDialog()"
+            class="container__buttons__single-btn">
+      <p class="container__buttons__single-btn__text">Anuluj</p>
+    </button>
+
+    <div class="container__buttons__vl"></div>
+
+    <button mat-flat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="yesDialog()"
+            class="container__buttons__single-btn">
+      <p class="container__buttons__single-btn__text">Zatwierdź</p>
+    </button>
+  </div>
+</div>
