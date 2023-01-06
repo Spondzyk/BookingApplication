@@ -13,6 +13,8 @@ import {SinglePlaceDisplayComponent} from './manage-places/single-place-display/
 import {AcceptanceDialogComponent} from './core/acceptance-dialog/acceptance-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {HttpClientModule} from "@angular/common/http";
+import {ChatModule} from "./chat/chat.module";
+import {BookingsModule} from "./bookings/bookings.module";
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import {HttpClientModule} from "@angular/common/http";
     PlaceListComponent,
     NewPlaceComponent,
     SinglePlaceDisplayComponent,
-    AcceptanceDialogComponent
+    AcceptanceDialogComponent,
   ],
   imports: [
     MatIconModule,
@@ -32,7 +34,9 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     GeneralLayoutModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    ChatModule,
+    BookingsModule,
   ],
   exports: [
     MatIconModule,

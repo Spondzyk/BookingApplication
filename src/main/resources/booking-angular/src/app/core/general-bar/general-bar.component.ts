@@ -15,4 +15,8 @@ export class GeneralBarComponent {
     this.router.navigateByUrl('');
   };
 
+  messageClick(){
+    this.router.navigateByUrl('chat');
+  }
+
 }

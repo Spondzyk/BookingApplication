@@ -1,0 +1,14 @@
+.container{
+  display: flex;
+
+  &__list{
+    width: min-content;
+  }
+
+  &__booking{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
