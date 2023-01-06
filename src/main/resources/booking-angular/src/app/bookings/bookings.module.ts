@@ -12,6 +12,11 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import { BookingsBannerComponent } from './bookings-banner/bookings-banner.component';
 import { SingleBookingComponent } from './single-booking/single-booking.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatButtonModule} from "@angular/material/button";
+import { RankingStarComponent } from './single-booking/ranking-star/ranking-star.component';
+import { SingleBookingInfoComponent } from './single-booking/single-booking-info/single-booking-info.component';
+
 
 
 @NgModule({
@@ -21,6 +26,8 @@ import { SingleBookingComponent } from './single-booking/single-booking.componen
     BookingsCardComponent,
     BookingsBannerComponent,
     SingleBookingComponent,
+    RankingStarComponent,
+    SingleBookingInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +38,8 @@ import { SingleBookingComponent } from './single-booking/single-booking.componen
     ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
+    ScrollingModule,
+    MatButtonModule,
   ],
   providers: [],
 

@@ -1,0 +1,22 @@
+.container{
+  display: block;
+}
+.star {
+  margin: 0px 0px;
+  color: #a9a5a5;
+  display: inline-block;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.star {
+  width: 35px;
+  height: 35px;
+}
+.star-black {
+  color: black;
+}
+
+.star-gray {
+  color: gray;
+}

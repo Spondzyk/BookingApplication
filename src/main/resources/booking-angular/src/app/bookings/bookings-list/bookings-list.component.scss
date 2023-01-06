@@ -2,11 +2,8 @@
   margin: 10px;
   display: flex;
   flex-direction: column;
-  border-left: 2px solid lightgray;
-  border-right: 2px solid lightgray;
 
   &__search{
-    margin: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;

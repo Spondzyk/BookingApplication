@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+
+  &__action {
+    margin-top: 20px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 5px 20px 5px 5px;
+    display: flex;
+  }
+
+  &__other {
+    margin-top: 10px;
+    display: flex;
+    gap: 10%;
+
+    &__description {
+      font-size: 20px;
+      width: 65%;
+    }
+
+    &__rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+}
+
+.place-info {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+
+  &__accommodation {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  &__icon{
+    width: 25px;
+    height: 25px;
+  }
+  &__place{
+    font-size: 25px;
+    font-weight: bold;
+  }
+}
+.host_info{
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+
+  &__image{
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  &__name{
+    font-size: 16px;
+
+  }
+}
+
+.buttons{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.spacer{
+  flex: 1 1 auto;
+}
+
+
+
+
+
+
+
