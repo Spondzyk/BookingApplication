@@ -1,6 +1,6 @@
-package repositories;
+package com.example.booking.repositories;
 
-import models.User;
+import com.example.booking.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

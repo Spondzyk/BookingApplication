@@ -1,10 +1,10 @@
-package controlers;
+package com.example.booking.controlers;
 
-import models.Place;
+import com.example.booking.models.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.PlaceService;
+import com.example.booking.services.PlaceService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("")
+@RequestMapping("/api")
 public class PlaceController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class PlaceController {
     public ResponseEntity<Place> updatePlace(@PathVariable Long id, @RequestBody Place placeDetails) {
         Place place = placeService.getPlaceById(id);
 
-        placeService.updatePlace(place, placeDetails);
+        place = placeService.updatePlace(place, placeDetails);
         Place updatedPlace = placeService.savePlace(place);
 
         return ResponseEntity.ok(updatedPlace);

@@ -1,23 +1,25 @@
-package services;
+package com.example.booking.services;
 
-import models.Place;
+import com.example.booking.models.Place;
 import org.springframework.beans.factory.annotation.Autowired;
-import repositories.PlaceRepository;
-import Exception.ResourceNotFoundException;
+import com.example.booking.repositories.PlaceRepository;
+import com.example.booking.Exception.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+@Service
 public class PlaceService {
 
-    @Autowired
-    PlaceRepository placeRepository;
+    private final PlaceRepository placeRepository;
 
-    public PlaceService() {
+    @Autowired
+    public PlaceService(PlaceRepository placeRepository) {
+        this.placeRepository = placeRepository;
     }
 
-    public List<Place> getAll(){
+    public List<Place> getAll() {
         return placeRepository.findAll();
     }
 

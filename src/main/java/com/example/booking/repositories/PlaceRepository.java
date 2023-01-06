@@ -1,6 +1,6 @@
-package repositories;
+package com.example.booking.repositories;
 
-import models.Place;
+import com.example.booking.models.Place;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlaceRepository extends JpaRepository<Place, Long> {
