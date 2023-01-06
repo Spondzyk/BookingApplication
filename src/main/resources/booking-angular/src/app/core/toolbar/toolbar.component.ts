@@ -14,4 +14,7 @@ export class ToolbarComponent {
   btnClick = () => {
     this.router.navigateByUrl('places');
   };
+  bookingClick(){
+    this.router.navigateByUrl('bookings');
+  }
 }
