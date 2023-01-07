@@ -25,7 +25,7 @@ public class PlaceController {
 
     @GetMapping("/places")
     public List<Place> getAll() {
-        return placeService.getAll();
+        return placeService.getAllUserPlace(1L);
     }
 
     @GetMapping("/places/{id}")

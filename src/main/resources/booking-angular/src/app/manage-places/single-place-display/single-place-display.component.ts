@@ -13,6 +13,7 @@ import {PlaceService} from "../../services/place.service";
 export class SinglePlaceDisplayComponent implements OnInit {
 
   currentPlace: Place = {
+    id: -1,
     name: '',
   };
 
@@ -46,7 +47,15 @@ export class SinglePlaceDisplayComponent implements OnInit {
     acceptanceDialog.afterClosed().subscribe((res) => {
       switch (res.event) {
         case "yes-option":
-          console.log("usunieto")
+          this.placeService.delete(this.currentPlace.id)
+            .subscribe(
+              response => {
+                console.log(response);
+                this.router.navigate(['/places']);
+              },
+              error => {
+                console.log(error);
+              });
           break;
         case "no-option":
           break;
