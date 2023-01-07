@@ -1,0 +1,33 @@
+.card {
+  display: flex;
+  height: 150px;
+  flex-direction: row;
+
+  &__header {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    width: 150px;
+
+    &__image {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+
+    &__name {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    &__additional-info {
+      font-size: 18px;
+    }
+  }
+}

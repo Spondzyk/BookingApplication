@@ -39,8 +39,7 @@ public class Place {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "type_of_place_id", nullable = false)
     private TypeOfPlace type_of_place;
 

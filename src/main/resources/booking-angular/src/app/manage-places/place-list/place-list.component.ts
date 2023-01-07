@@ -42,7 +42,7 @@ export class PlaceListComponent implements OnInit {
     this.router.navigateByUrl('places/add');
   };
 
-  singlePlace = () => {
-    this.router.navigateByUrl('places/:id');
-  };
+  // singlePlace = () => {
+  //   this.router.navigateByUrl('places/:id');
+  // };
 }

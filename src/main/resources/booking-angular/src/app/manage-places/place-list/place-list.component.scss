@@ -49,4 +49,11 @@
     justify-content: flex-start;
     margin-left: 100px;
   }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style-type: none;
+  }
 }

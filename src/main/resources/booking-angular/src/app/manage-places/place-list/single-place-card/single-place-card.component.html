@@ -1,0 +1,12 @@
+<mat-card (click)="onClick()" class="card">
+  <mat-card-header class="card__header">
+    <img class="card__header__image" src='{{imagePath}}'>
+  </mat-card-header>
+
+  <mat-card-content class="card__content">
+    <p class="card__content__name">Nazwa obiektu: {{place?.name}}</p>
+    <p class="card__content__additional-info">Typ obiektu: {{place?.type_of_place?.name}}</p>
+    <p class="card__content__additional-info">
+      Adres: {{placeAddress | placeAddress:place?.city:place?.street:place?.house_nr}}</p>
+  </mat-card-content>
+</mat-card>

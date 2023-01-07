@@ -15,7 +15,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {HttpClientModule} from "@angular/common/http";
 import {ChatModule} from "./chat/chat.module";
 import {BookingsModule} from "./bookings/bookings.module";
-
+import { SinglePlaceCardComponent } from './manage-places/place-list/single-place-card/single-place-card.component';
+import {PlaceAddressPipe} from "./manage-places/place-list/single-place-card/pipes/place-address.pipe";
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,12 @@ import {BookingsModule} from "./bookings/bookings.module";
     NewPlaceComponent,
     SinglePlaceDisplayComponent,
     AcceptanceDialogComponent,
+    SinglePlaceCardComponent,
+    PlaceAddressPipe
   ],
   imports: [
     MatIconModule,
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -41,7 +46,8 @@ import {BookingsModule} from "./bookings/bookings.module";
   exports: [
     MatIconModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

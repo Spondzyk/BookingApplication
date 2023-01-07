@@ -16,7 +16,7 @@ export class PlaceService {
     return this.http.get(baseUrl);
   }
 
-  get(id: number): Observable<any> {
+  get(id: any): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
@@ -24,11 +24,11 @@ export class PlaceService {
     return this.http.post(`${baseUrl}/add`, data);
   }
 
-  update(id: number, data: any): Observable<any> {
+  update(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  delete(id: number): Observable<any> {
+  delete(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
 }
