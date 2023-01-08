@@ -1,6 +1,8 @@
 package com.example.booking.controlers;
 
+import com.example.booking.Dto.PlaceDto;
 import com.example.booking.models.Place;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,7 @@ import com.example.booking.services.PlaceService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -16,32 +19,48 @@ import java.util.Map;
 public class PlaceController {
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
     private PlaceService placeService;
 
-//    @GetMapping("/places")
+    public PlaceController(PlaceService placeService) {
+        super();
+        this.placeService = placeService;
+    }
+
+    //    @GetMapping("/places")
 //    public List<Place> getAllUserPlaces(@RequestBody Long user_id) {
 //        return placeService.getAllUserPlace(1L);
 //    }
 
     @GetMapping("/places")
-    public List<Place> getAll() {
-        return placeService.getAllUserPlace(1L);
+    public List<PlaceDto> getAll() {
+        return placeService.getAllUserPlace(1L)
+                .stream()
+                .map(place -> modelMapper.map(place, PlaceDto.class))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/places/{id}")
-    public ResponseEntity<Place> getPlaceById(@PathVariable Long id) {
+    public ResponseEntity<PlaceDto> getPlaceById(@PathVariable Long id) {
         Place place = placeService.getPlaceById(id);
-        return ResponseEntity.ok(place);
+        PlaceDto placeDto = modelMapper.map(place, PlaceDto.class);
+
+        return ResponseEntity.ok(placeDto);
     }
 
     @PutMapping("/places/{id}")
-    public ResponseEntity<Place> updatePlace(@PathVariable Long id, @RequestBody Place placeDetails) {
+    public ResponseEntity<PlaceDto> updatePlace(@PathVariable Long id, @RequestBody PlaceDto placeDetails) {
         Place place = placeService.getPlaceById(id);
 
-        place = placeService.updatePlace(place, placeDetails);
+        Place converted = modelMapper.map(placeDetails, Place.class);
+        place = placeService.updatePlace(place, converted);
         Place updatedPlace = placeService.savePlace(place);
 
-        return ResponseEntity.ok(updatedPlace);
+        PlaceDto placeDto = modelMapper.map(updatedPlace, PlaceDto.class);
+
+        return ResponseEntity.ok(placeDto);
     }
 
     @DeleteMapping("/places/{id}")
@@ -55,7 +74,12 @@ public class PlaceController {
     }
 
     @PostMapping("/places/add")
-    public Place createPlace(@RequestBody Place place) {
-        return placeService.savePlace(place);
+    public ResponseEntity<PlaceDto> createPlace(@RequestBody PlaceDto place) {
+
+        Place converted = modelMapper.map(place, Place.class);
+        Place saved = placeService.savePlace(converted);
+        PlaceDto dto = modelMapper.map(saved, PlaceDto.class);
+
+        return ResponseEntity.ok(dto);
     }
 }

@@ -22,6 +22,37 @@
       </button>
     </div>
   </div>
-</div>
 
-<p>{{currentPlace.name}}</p>
+  <div class="container__content">
+    <div class="container__content__image-part">
+      <p class="container__content__image-part__name-of-place">{{currentPlace.name}}</p>
+
+      <div class="container__content__image-part__mark-note">
+        <mat-icon class="container__content__image-part__mark-note__icon">location_on</mat-icon>
+        <p class="container__content__image-part__mark-note__description">Świetna lokalizacja: wysoko oceniana przez
+          Gości (9,2)</p>
+      </div>
+    </div>
+
+    <div class="container__content__vl"></div>
+
+    <div class="container__content__description-part">
+      <p class="container__content__description-part__description">Lokalizacja</p>
+      <p
+        class="container__content__description-part__description-lower">{{placeAddress | placeAddress:currentPlace.city:currentPlace.street:currentPlace.house_nr}}</p>
+      <p class="container__content__description-part__description">Typ obiektu</p>
+      <p class="container__content__description-part__description-lower">{{currentPlace.type_of_place?.name}}</p>
+      <p class="container__content__description-part__description">Udogodnienia</p>
+      <ul class="container__content__description-part__list">
+        <li *ngFor="let facilities of currentPlace.facilities"
+            class="container__content__description-part__list__list-item">
+          {{facilities}}
+        </li>
+      </ul>
+      <p class="container__content__description-part__description">Opis</p>
+      <p class="container__content__description-part__description-lower">{{currentPlace.description}}</p>
+    </div>
+
+  </div>
+
+</div>

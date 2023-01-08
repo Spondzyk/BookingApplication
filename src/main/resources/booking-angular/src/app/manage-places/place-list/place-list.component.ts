@@ -41,4 +41,8 @@ export class PlaceListComponent implements OnInit {
   newPlace = () => {
     this.router.navigateByUrl('places/add');
   };
+
+  singlePlace() {
+    this.router.navigateByUrl('places/7');
+  }
 }

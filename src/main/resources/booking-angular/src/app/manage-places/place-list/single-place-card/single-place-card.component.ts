@@ -9,14 +9,19 @@ import {Router} from "@angular/router";
 })
 export class SinglePlaceCardComponent implements OnInit {
 
-  @Input() place?: Place;
+  @Input() place!: Place;
   placeAddress: String = "";
-  @Input() imagePath?: String = "../../../assets/images/obrazek.jpg";
+  imagePath?: String;
 
   constructor(private router: Router) {
   }
 
   ngOnInit(): void {
+    if (this.place.image_folder_path) {
+      this.imagePath = this.place.image_folder_path + "/1.jpg"
+    } else {
+      this.imagePath = "../../../assets/images/obrazek.jpg";
+    }
   }
 
   onClick(): void {

@@ -14,8 +14,23 @@ export class SinglePlaceDisplayComponent implements OnInit {
 
   currentPlace: Place = {
     id: -1,
+
     name: '',
+    city: '',
+    street: '',
+    house_nr: '',
+    type_of_place: {},
+    description: "",
+    facilities: [
+      "zwierzęta domowe są akceptowane",
+      "klimatyzacja",
+      "widok",
+      "taras",
+      "prywatna łazienka"
+    ]
   };
+
+  placeAddress: string = "";
 
   constructor(private placeService: PlaceService, private route: ActivatedRoute,
               private router: Router, public dialog: MatDialog) {

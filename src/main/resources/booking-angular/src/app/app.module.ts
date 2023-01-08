@@ -16,7 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ChatModule} from "./chat/chat.module";
 import {BookingsModule} from "./bookings/bookings.module";
 import { SinglePlaceCardComponent } from './manage-places/place-list/single-place-card/single-place-card.component';
-import {PlaceAddressPipe} from "./manage-places/place-list/single-place-card/pipes/place-address.pipe";
+import {PlaceAddressPipe} from "./manage-places/pipes/place-address.pipe";
 import {MatCardModule} from '@angular/material/card';
 
 @NgModule({

@@ -7,6 +7,8 @@ export class Place {
   city?: string;
   street?: string;
   house_nr?: string;
+  image_folder_path?: string;
   user_id?: any;
   type_of_place?: TypeOfPlace;
+  facilities?: string[];
 }

@@ -34,6 +34,9 @@ public class Place {
     @Column(name = "house_nr")
     private String house_nr;
 
+    @Column(name = "image_folder_path")
+    private String image_folder_path;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
