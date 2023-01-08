@@ -8,12 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.booking.services.PlaceService;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
 @RestController
 @RequestMapping("/api")
 public class PlaceController {
@@ -39,13 +40,21 @@ public class PlaceController {
         return placeService.getAllUserPlace(1L)
                 .stream()
                 .map(place -> modelMapper.map(place, PlaceDto.class))
+                .peek(placeDto -> {
+                    try {
+                        placeDto.listFilesUsingDirectoryStream();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                })
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/places/{id}")
-    public ResponseEntity<PlaceDto> getPlaceById(@PathVariable Long id) {
+    public ResponseEntity<PlaceDto> getPlaceById(@PathVariable Long id) throws IOException {
         Place place = placeService.getPlaceById(id);
         PlaceDto placeDto = modelMapper.map(place, PlaceDto.class);
+        placeDto.listFilesUsingDirectoryStream();
 
         return ResponseEntity.ok(placeDto);
     }

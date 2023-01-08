@@ -11,4 +11,5 @@ export class Place {
   user_id?: any;
   type_of_place?: TypeOfPlace;
   facilities?: string[];
+  image_name_table?: string[];
 }

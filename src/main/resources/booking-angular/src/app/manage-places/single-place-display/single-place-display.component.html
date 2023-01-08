@@ -27,11 +27,19 @@
     <div class="container__content__image-part">
       <p class="container__content__image-part__name-of-place">{{currentPlace.name}}</p>
 
-      <div class="container__content__image-part__mark-note">
-        <mat-icon class="container__content__image-part__mark-note__icon">location_on</mat-icon>
-        <p class="container__content__image-part__mark-note__description">Świetna lokalizacja: wysoko oceniana przez
-          Gości (9,2)</p>
-      </div>
+      <ng-template [ngIf]="currentPlace.city">
+        <div class="container__content__image-part__mark-note">
+          <mat-icon class="container__content__image-part__mark-note__icon">location_on</mat-icon>
+          <p class="container__content__image-part__mark-note__description">
+            Świetna lokalizacja: wysoko oceniana przez Gości (9,2)
+          </p>
+        </div>
+      </ng-template>
+
+      <app-image-gallery [place]="currentPlace"
+                         class="container__content__image-part__images">
+      </app-image-gallery>
+
     </div>
 
     <div class="container__content__vl"></div>

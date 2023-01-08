@@ -12,23 +12,7 @@ import {PlaceService} from "../../services/place.service";
 })
 export class SinglePlaceDisplayComponent implements OnInit {
 
-  currentPlace: Place = {
-    id: -1,
-
-    name: '',
-    city: '',
-    street: '',
-    house_nr: '',
-    type_of_place: {},
-    description: "",
-    facilities: [
-      "zwierzęta domowe są akceptowane",
-      "klimatyzacja",
-      "widok",
-      "taras",
-      "prywatna łazienka"
-    ]
-  };
+  currentPlace: Place = {};
 
   placeAddress: string = "";
 
@@ -37,21 +21,11 @@ export class SinglePlaceDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPlace(this.route.snapshot.params['id']);
+    this.route.data.subscribe(({place}) => {
+      console.log(place);
+      this.currentPlace = place;
+    });
   }
-
-  getPlace(id: string): void {
-    this.placeService.get(id)
-      .subscribe(
-        data => {
-          this.currentPlace = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
 
   return = () => {
     this.router.navigateByUrl('places');

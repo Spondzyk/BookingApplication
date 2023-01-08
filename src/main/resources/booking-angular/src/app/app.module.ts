@@ -15,9 +15,12 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {HttpClientModule} from "@angular/common/http";
 import {ChatModule} from "./chat/chat.module";
 import {BookingsModule} from "./bookings/bookings.module";
-import { SinglePlaceCardComponent } from './manage-places/place-list/single-place-card/single-place-card.component';
+import {SinglePlaceCardComponent} from './manage-places/place-list/single-place-card/single-place-card.component';
 import {PlaceAddressPipe} from "./manage-places/pipes/place-address.pipe";
 import {MatCardModule} from '@angular/material/card';
+import {ImageGalleryComponent} from './manage-places/single-place-display/image-gallery/image-gallery.component';
+import {ScrollViewModule} from '@progress/kendo-angular-scrollview';
+
 import {ManageAccountModule} from "./manage-account/manage-account.module";
 
 @NgModule({
@@ -30,7 +33,8 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     SinglePlaceDisplayComponent,
     AcceptanceDialogComponent,
     SinglePlaceCardComponent,
-    PlaceAddressPipe
+    PlaceAddressPipe,
+    ImageGalleryComponent
   ],
   imports: [
     MatIconModule,
@@ -43,6 +47,7 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     HttpClientModule,
     ChatModule,
     BookingsModule,
+    ScrollViewModule,
     ManageAccountModule,
   ],
   exports: [
