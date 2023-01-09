@@ -1,17 +1,20 @@
-<mat-card class="card">
+<mat-card matRipple
+          [matRippleCentered]="centered"
+          [matRippleDisabled]="disabled"
+          [matRippleUnbounded]="unbounded"
+          class="card">
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
-    <p class="header-text">Name</p>
+    <p class="header-text">{{reservation.accomodationPlaceName}}</p>
   </mat-card-header>
-  <span class="spacer"></span>
   <mat-card-content class="content">
     <div>
-      <p class="content__date">21.11.2022 - 24.11.2022</p>
+      <p class="content__date">{{reservation.startDate | date: 'dd.MM.YYYY'}} - {{reservation.endDate | date: 'dd.MM.YYYY'}}</p>
     </div>
     <div class="content__items">
       <mat-icon>room</mat-icon>
-      <h2>Wrocław</h2>
-      <h4>ul. Some 7/8</h4>
+      <p class="content__items__city">{{reservation.accomodationPlaceCity}}</p>
+      <p class="content__items__street">ul.{{reservation.accomodationPlaceStreet}} {{reservation.accomodationPlaceHouse_nr}}</p>
     </div>
   </mat-card-content>
 </mat-card>

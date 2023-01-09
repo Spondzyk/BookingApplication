@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Reservation} from "../../../services/dto/reservation";
 
 @Component({
   selector: 'app-bookings-card',
   templateUrl: './bookings-card.component.html',
   styleUrls: ['./bookings-card.component.scss']
 })
-export class BookingsCardComponent {
-  longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  originally bred for hunting.`;
+export class BookingsCardComponent implements OnInit {
+  centered = false;
+  disabled = false;
+  unbounded = false;
+
+  @Input() reservation!: Reservation;
+
+  ngOnInit(): void {
+  }
+
 }

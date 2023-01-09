@@ -1,17 +1,12 @@
 .card{
-  margin-left: 20px;
-  margin-right: 20px;
+  height: 125px;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 10px;
   border-top: 2px solid lightgray;
   display: flex;
   flex-direction: row;
   width: 400px;
-}
-.spacer{
-  flex: 0.4 0.4 auto;
-}
-mat-card-header{
-  margin-left: 10px;
 }
 .header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
@@ -19,6 +14,7 @@ mat-card-header{
 }
 .header-text{
   font-size: 16px;
+  text-align : center;
 }
 
 .content{
@@ -28,20 +24,26 @@ mat-card-header{
   margin-top: 15px;
 
   &__date{
-    font-size: 20px;
+    font-size: 19px;
   }
   &__items{
     display: flex;
     gap: 8px;
     align-items: baseline;
 
-  }
-  h2{
-    font-weight: normal;
+    &__city{
+      font-size: 20px;
+      font-weight: normal;
+    }
+    &__street{
+      font-size: 12px;
+      font-weight: normal;
+    }
   }
 }
 mat-card-header{
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 25%;
 }

@@ -16,6 +16,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatButtonModule} from "@angular/material/button";
 import { RankingStarComponent } from './single-booking/ranking-star/ranking-star.component';
 import { SingleBookingInfoComponent } from './single-booking/single-booking-info/single-booking-info.component';
+import {MatRippleModule} from "@angular/material/core";
 
 
 
@@ -40,6 +41,7 @@ import { SingleBookingInfoComponent } from './single-booking/single-booking-info
     MatIconModule,
     ScrollingModule,
     MatButtonModule,
+    MatRippleModule,
   ],
   providers: [],
 
