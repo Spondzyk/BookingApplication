@@ -31,6 +31,7 @@ public class ReservationService {
         return reservationRepository.findAll()
                 .stream()
                 .filter(place -> place.getUser().getId() == user_id)
+                .sorted((p1, p2) -> p2.getStartDate().compareTo(p1.getStartDate()))
                 .map(this::reservationToInfoDto)
                 .collect(Collectors.toList());
     }
@@ -51,7 +52,7 @@ public class ReservationService {
             dto.setPaymentStatus(PaymentStatus.UNPAID.toString());
         else {
             dto.setPaymentStatus(payments.stream().sorted(
-                    (p1, p2) -> p2.getDatetime().compareTo(p1.getDatetime()))
+                            (p1, p2) -> p2.getDatetime().compareTo(p1.getDatetime()))
                     .toList().get(0).getStatus().toString());
         }
         return dto;

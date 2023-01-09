@@ -16,4 +16,8 @@ export class ReservationService {
   getAll(): Observable<Reservation[]> {
     return  this.http.get<Reservation[]>(baseUrl);
   }
+
+  getReservation(id: number): Observable<Reservation>{
+    return this.http.get<Reservation>(`${baseUrl}/${id}`)
+  }
 }

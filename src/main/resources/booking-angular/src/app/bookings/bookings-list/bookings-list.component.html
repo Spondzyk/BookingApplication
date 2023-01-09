@@ -11,12 +11,12 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="container__list">
-    <div *ngFor="let reservation of filteredReservations; index as i;">
+  <cdk-virtual-scroll-viewport appendOnly itemSize="150" class="container__list" id="booking-list">
+    <div *cdkVirtualFor="let reservation of filteredReservations; index as i;" class="container__list__item">
       <app-bookings-card
         [reservation]="reservation"
         (click)="goToReservation(reservation.id)">
       </app-bookings-card>
     </div>
-  </div>
+  </cdk-virtual-scroll-viewport>
 </div>

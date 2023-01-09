@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../services/dto/reservation";
-import {filter, map, startWith} from "rxjs";
 
 interface Option {
   value: string;
@@ -18,7 +17,7 @@ class Observable<T> {
   templateUrl: './bookings-list.component.html',
   styleUrls: ['./bookings-list.component.scss']
 })
-export class BookingsListComponent implements OnInit {
+export class BookingsListComponent implements OnInit{
   options: Option[] = [
     {value: '', viewValue: 'ALL'},
     {value: 'current', viewValue: 'CURRENT'},
@@ -34,12 +33,12 @@ export class BookingsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.optionControl.setValue(this.options[0].value);
-    this.retrievePlaces();
+    this.retrieveReservationsInfo();
   }
 
   reservations?: Reservation[];
 
-  retrievePlaces(): void {
+  retrieveReservationsInfo(): void {
     this.reservationService.getAll()
       .subscribe({
         next: (data) => {
@@ -58,7 +57,5 @@ export class BookingsListComponent implements OnInit {
     this.filteredReservations =
       this.reservations?.filter(res =>
         res.status.toLowerCase().match(this.optionControl.value));
-    console.log(this.filteredReservations)
-    console.log(this.optionControl.value)
   }
 }

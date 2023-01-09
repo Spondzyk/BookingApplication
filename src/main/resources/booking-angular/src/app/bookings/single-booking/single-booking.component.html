@@ -1,18 +1,20 @@
 <div class="container">
   <div class="container__base_info">
-    <app-single-booking-info></app-single-booking-info>
+    <div *ngIf="reservation">
+      <app-single-booking-info [reservation]="reservation"></app-single-booking-info>
+    </div>
   </div>
 
   <div class="container__action">
     <div>
       <div class="place-info">
-        <p class="place-info__accommodation">ACCOMODATION</p>
+        <p class="place-info__accommodation">{{reservation?.accomodationName}}</p>
         <mat-icon class="place-info__icon">brightness_1</mat-icon>
-        <p class="place-info__place">Place</p>
+        <p class="place-info__place">{{reservation?.accomodationPlaceName}}</p>
       </div>
       <div class="host_info">
         <div mat-card-avatar class="host_info__image"></div>
-        <p class="host_info__name">Host Name</p>
+        <p class="host_info__name">{{reservation?.accomodationPlaceUserName}}</p>
       </div>
     </div>
     <span class="spacer"></span>
@@ -33,10 +35,7 @@
 
   <div class="container__other">
     <p class="container__other__description">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      {{reservation?.accomodationDescription}}. {{reservation?.accomodationPlaceDescription}}
     </p>
     <div class="container__other__rating">
       <div>

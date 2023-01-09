@@ -1,17 +1,18 @@
 .container{
-  display: flex;
+  display: grid;
+  width: 100%;
+  height: fit-content;
+  grid-template-columns: 460px 1fr;
+  grid-column-gap: 20px;
 
   &__list{
     margin: 10px;
     width: min-content;
+    height: fit-content;
     border-left: 2px solid lightgray;
     border-right: 2px solid lightgray;
   }
 
   &__booking{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
   }
 }

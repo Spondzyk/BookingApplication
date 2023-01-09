@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Reservation} from "../../../services/dto/reservation";
 
 @Component({
   selector: 'app-single-booking-info',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./single-booking-info.component.scss']
 })
 export class SingleBookingInfoComponent {
+  @Input() reservation!: Reservation;
 
 }

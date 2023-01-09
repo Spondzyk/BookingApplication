@@ -4,18 +4,18 @@
          src="../../assets/images/oferta1.jpg">
   </div>
   <div class="container__info">
-    <p class="container__date">21.11.2022 - 24.11.2022</p>
+    <p class="container__date">{{reservation.startDate | date: 'dd.MM.YYYY'}} - {{reservation.endDate | date: 'dd.MM.YYYY'}}</p>
     <div class="container__localization">
       <mat-icon class="icon">room</mat-icon>
       <div>
-        <h2 class="big-font gray">Wrocław</h2>
-        <h4 class="small-font gray">ul. Some 7/8</h4>
+        <h2 class="big-font gray">{{reservation.accomodationPlaceCity}}</h2>
+        <h4 class="small-font gray">ul.{{reservation.accomodationPlaceStreet}} {{reservation.accomodationPlaceHouse_nr}}</h4>
       </div>
     </div>
     <div class="container__payment">
       <div>
-        <p class="big-font">Price:120zł</p>
-        <p class="small-font">Status:UNPAYED</p>
+        <p class="big-font">Price:{{reservation.accomodationPrice}}zł</p>
+        <p class="small-font">Status:{{reservation.paymentStatus}}</p>
       </div>
       <span class="spacer"></span>
       <button mat-stroked-button>
@@ -25,7 +25,7 @@
 
     </div>
     <div class="container__people">
-      <p class="small-font">People: 4</p>
+      <p class="small-font">People: {{reservation.people_nr}}</p>
     </div>
   </div>
 </div>
