@@ -22,6 +22,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from '@angular/material/core';
 import { DialogCancelBookingComponent } from './single-booking/dialog-cancel-booking/dialog-cancel-booking.component';
+import {MatDividerModule} from "@angular/material/divider";
+import { DialogEditBookingComponent } from './single-booking/dialog-edit-booking/dialog-edit-booking.component';
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { DialogCancelBookingComponent } from './single-booking/dialog-cancel-boo
     SingleBookingInfoComponent,
     DialogNoBookingsComponent,
     DialogCancelBookingComponent,
+    DialogEditBookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { DialogCancelBookingComponent } from './single-booking/dialog-cancel-boo
     MatRippleModule,
     MatDialogModule,
     MatDatepickerModule,
+    MatDividerModule,
   ],
   providers: [],
 

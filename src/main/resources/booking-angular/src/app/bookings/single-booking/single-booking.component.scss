@@ -3,6 +3,9 @@
   flex-direction: column;
   margin: 10px;
 
+  &__base-info{
+    height: max-content;
+  }
   &__action {
     margin-top: 20px;
     border-top: 2px solid black;

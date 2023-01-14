@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 @Entity
+@Builder
 @Table(name = "payment")
 public class Payment {
     @Id

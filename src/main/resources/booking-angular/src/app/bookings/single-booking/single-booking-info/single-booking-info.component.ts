@@ -3,6 +3,12 @@ import {Reservation} from "../../../services/dto/reservation";
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {DateAdapter, MAT_DATE_FORMATS} from "@angular/material/core";
 import {APP_DATE_FORMATS, MyDateAdapter} from "./my-date-adapter";
+import {ReservationService} from "../../../services/reservation.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogCancelBookingComponent} from "../dialog-cancel-booking/dialog-cancel-booking.component";
+import {DialogEditBookingComponent} from "../dialog-edit-booking/dialog-edit-booking.component";
+import {BookingsListComponent} from "../../bookings-list/bookings-list.component";
 
 @Component({
   selector: 'app-single-booking-info',
@@ -22,7 +28,12 @@ export class SingleBookingInfoComponent implements OnInit {
     peopleNr: new FormControl<number | null>(null, [Validators.min(0), Validators.required]),
   });
 
+  constructor(private reservationService: ReservationService, public dialog: MatDialog) {
+  }
+
   ngOnInit(): void {
+    if(this.reservation.accomodationPeople_nr)
+      this.editable_data.controls.peopleNr.addValidators(Validators.max(this.reservation.accomodationPeople_nr))
   }
 
   isEditBlocked() {
@@ -47,7 +58,29 @@ export class SingleBookingInfoComponent implements OnInit {
   }
 
   saveEdit() {
-    console.log("Edit saved")
+    this.isEdit = false
+    let data = structuredClone(this.reservation)
+    if (this.editable_data.controls.start.value) {
+      let d = new Date(this.editable_data.controls.start.value);
+      d.setTime(d.getTime() - (d.getTimezoneOffset()*60*1000));
+      data.startDate = d;
+    }
+    if (this.editable_data.controls.end.value) {
+      let d: Date = new Date(this.editable_data.controls.end.value);
+      d.setTime(d.getTime() - (d.getTimezoneOffset()*60*1000));
+      data.endDate = d;
+    }
+    if (this.editable_data.controls.peopleNr.value) {
+      data.people_nr = this.editable_data.controls.peopleNr.value;
+    }
+    this.editable_data.reset()
+
+    this.reservationService.updateReservation(data).subscribe({
+      next: (data) => {
+        this.reservation = data;
+      },
+      error: (e: HttpErrorResponse) => console.error(e.error.message)
+    });
   }
 
   editCancel() {
@@ -59,4 +92,24 @@ export class SingleBookingInfoComponent implements OnInit {
     // Prevent Saturday and Sunday from being selected.
     return day >= new Date();
   };
+
+  openEditDialog() {
+    const dialogRef = this.dialog.open(DialogEditBookingComponent, {
+      data: {
+        startDate: this.editable_data.controls.start.value,
+        endDate: this.editable_data.controls.end.value,
+        oldStartDate: this.reservation.startDate,
+        oldEndDate: this.reservation.endDate,
+        oldPeopleNr: this.reservation.people_nr,
+        peopleNr: this.editable_data.controls.peopleNr.value,
+        price: this.reservation.price,
+        priceAccommodation: this.reservation.accomodationPrice,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result)
+          this.saveEdit();
+    });
+  }
 }

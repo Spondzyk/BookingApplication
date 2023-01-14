@@ -20,4 +20,12 @@ export class ReservationService {
   getReservation(id: number): Observable<Reservation>{
     return this.http.get<Reservation>(`${baseUrl}/${id}`)
   }
+
+  cancelReservation(id: number): Observable<Reservation> {
+    return this.http.put<Reservation>(`${baseUrl}/${id}/cancel`, {})
+  }
+
+  updateReservation(data: Reservation): Observable<Reservation> {
+    return this.http.put<Reservation>(`${baseUrl}/${data.id}`, data)
+  }
 }
