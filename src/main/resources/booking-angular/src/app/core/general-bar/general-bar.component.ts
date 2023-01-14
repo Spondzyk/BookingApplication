@@ -19,4 +19,7 @@ export class GeneralBarComponent {
     this.router.navigateByUrl('chat');
   }
 
+  accountClick() {
+    this.router.navigate(['/account'])
+  }
 }

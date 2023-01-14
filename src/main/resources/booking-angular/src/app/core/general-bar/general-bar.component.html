@@ -7,7 +7,7 @@
   <span class="spacer"></span>
 
   <button class="container__message" mat-icon-button
-      (click)="messageClick()">
+          (click)="messageClick()">
     <mat-icon class="container__message_icon">message
     </mat-icon>
   </button>
@@ -15,14 +15,15 @@
   <img src="../../../assets/images/flag-icon-pl.webp"
        class="container__flag">
 
-  <mat-icon class="container__icon">
-    account_circle
-  </mat-icon>
 
-  <div class="container__user-info">
-    <p class="container__user-info__title">Nazwa użytkownika</p>
-    <p class="container__user-info__nick">Robert Kubica</p>
-  </div>
+  <button mat-button (click)="accountClick()">
+    <mat-icon class="container__user-info__icon">account_circle
+    </mat-icon>
+    <div class="container__user-info__center">
+      <p class="container__user-info__nick">Twoje konto</p>
+      <p class="container__user-info__nick">Robert Kubica</p>
+    </div>
+  </button>
 
 </div>
 

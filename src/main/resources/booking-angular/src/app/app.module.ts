@@ -18,6 +18,7 @@ import {BookingsModule} from "./bookings/bookings.module";
 import { SinglePlaceCardComponent } from './manage-places/place-list/single-place-card/single-place-card.component';
 import {PlaceAddressPipe} from "./manage-places/pipes/place-address.pipe";
 import {MatCardModule} from '@angular/material/card';
+import {ManageAccountModule} from "./manage-account/manage-account.module";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatCardModule} from '@angular/material/card';
     HttpClientModule,
     ChatModule,
     BookingsModule,
+    ManageAccountModule,
   ],
   exports: [
     MatIconModule,

@@ -9,6 +9,7 @@ import {BookingsModule} from "../bookings/bookings.module";
 import {BookingsComponent} from "../bookings/bookings.component";
 import {BookingsBannerComponent} from "../bookings/bookings-banner/bookings-banner.component";
 import {SingleBookingComponent} from "../bookings/single-booking/single-booking.component";
+import {AccountComponent} from "../manage-account/account/account.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: '', component: BookingsBannerComponent },
       { path: ':id', component: SingleBookingComponent },
     ]},
+  {path: 'account', component: AccountComponent},
 ];
 
 @NgModule({
