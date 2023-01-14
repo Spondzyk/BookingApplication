@@ -1,8 +1,10 @@
-import {AfterViewInit, Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../services/dto/reservation";
+import {MatDialog} from "@angular/material/dialog";
+import {ReservationService} from "../../services/reservation.service";
+import {DialogNoBookingsComponent} from "./dialog-no-bookings/dialog-no-bookings.component";
 
 interface Option {
   value: string;
@@ -28,7 +30,7 @@ export class BookingsListComponent implements OnInit{
   filteredReservations?: Reservation[];
 
 
-  constructor(private router: Router, private reservationService: ReservationService) {
+  constructor(private router: Router, private reservationService: ReservationService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -50,12 +52,18 @@ export class BookingsListComponent implements OnInit{
   }
 
   goToReservation(id: number) {
-    this.router.navigateByUrl(`bookings/${id}`)
+    this.router.navigate(['/bookings', id]);
   }
 
   filterReservation() {
+    if(this.reservations?.length === 0){
+      this.openDialog()
+    }
     this.filteredReservations =
       this.reservations?.filter(res =>
         res.status.toLowerCase().match(this.optionControl.value));
+  }
+  openDialog() {
+    this.dialog.open(DialogNoBookingsComponent);
   }
 }

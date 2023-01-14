@@ -1,8 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../services/dto/reservation";
 import {Subscription} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogNoBookingsComponent} from "../bookings-list/dialog-no-bookings/dialog-no-bookings.component";
+import {CancelBookingData, DialogCancelBookingComponent} from "./dialog-cancel-booking/dialog-cancel-booking.component";
 
 @Component({
   selector: 'app-single-booking',
@@ -16,7 +19,7 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
   id?: number
 
 
-  constructor(private route: ActivatedRoute, private reservationService: ReservationService) {
+  constructor(private route: ActivatedRoute, private reservationService: ReservationService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -42,5 +45,24 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
           error: (e) => console.error(e)
         });
     }
+  }
+
+  isEditBlocked() {
+    return this.reservation?.status != "CURRENT"
+  }
+
+  openCancelDialog() {
+    const dialogRef = this.dialog.open(DialogCancelBookingComponent, {
+      data: {
+        id: this.reservation?.id,
+        startDate: this.reservation?.startDate,
+        endDate: this.reservation?.endDate,
+        placeName: this.reservation?.accomodationPlaceName
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

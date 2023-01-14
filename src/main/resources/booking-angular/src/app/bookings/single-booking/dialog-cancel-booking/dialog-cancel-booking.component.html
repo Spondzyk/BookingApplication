@@ -1,0 +1,10 @@
+<h1 mat-dialog-title class="title">Booking Canceling</h1>
+<div mat-dialog-content class="content">
+  <p class="small-font" style="padding-bottom: 10px">Do you want to cancel this booking?</p>
+  <p class="small-font">{{data.startDate | date: 'dd.MM.YYYY'}} - {{data.endDate | date: 'dd.MM.YYYY'}}</p>
+  <p class="small-font">{{data.placeName}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="clickNo()" class="center" cdkFocusInitial>NO</button>
+  <button mat-stroked-button [mat-dialog-close]="data.id" class="center">YES</button>
+</div>

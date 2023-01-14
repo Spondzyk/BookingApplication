@@ -9,10 +9,14 @@
     font-weight: bold;
     font-size: 26px;
     color: gray;
+    overflow-wrap: break-word;
+    text-align: center;
   }
 
   &__side{
     font-size: 17px;
     color: lightgray;
+    overflow-wrap: break-word;
+    text-align: center;
   }
 }

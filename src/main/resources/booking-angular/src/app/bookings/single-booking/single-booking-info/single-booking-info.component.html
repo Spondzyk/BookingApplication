@@ -1,31 +1,80 @@
 <div class="container">
+
   <div class="container__image">
+    <div *ngIf="isEditBlocked()"
+         [style.--color-status]="colorStatus()"
+         class="container__status">
+      <p>{{reservation.status}}</p>
+    </div>
     <img class="container__image__actually"
          src="../../assets/images/oferta1.jpg">
   </div>
   <div class="container__info">
-    <p class="container__date">{{reservation.startDate | date: 'dd.MM.YYYY'}} - {{reservation.endDate | date: 'dd.MM.YYYY'}}</p>
-    <div class="container__localization">
-      <mat-icon class="icon">room</mat-icon>
-      <div>
-        <h2 class="big-font gray">{{reservation.accomodationPlaceCity}}</h2>
-        <h4 class="small-font gray">ul.{{reservation.accomodationPlaceStreet}} {{reservation.accomodationPlaceHouse_nr}}</h4>
+    <div *ngIf="!isEdit" class="container__info__date">
+      <div><p class="container__date">{{reservation.startDate | date: 'dd.MM.YYYY'}} </p>
       </div>
-    </div>
-    <div class="container__payment">
-      <div>
-        <p class="big-font">Price:{{reservation.accomodationPrice}}zł</p>
-        <p class="small-font">Status:{{reservation.paymentStatus}}</p>
+      <div><p class="container__date">-</p>
       </div>
-      <span class="spacer"></span>
-      <button mat-stroked-button>
-        <mat-icon>money</mat-icon>
-        Pay
+      <div><p class="container__date">{{reservation.endDate | date: 'dd.MM.YYYY'}}</p>
+      </div>
+      <button mat-icon-button (click)="editEnable()" [disabled]="isEditBlocked()">
+        <mat-icon>edit</mat-icon>
       </button>
-
     </div>
-    <div class="container__people">
-      <p class="small-font">People: {{reservation.people_nr}}</p>
+    <div class="container__info__rest">
+      <div *ngIf="isEdit" class="container__info__date__edit">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="editable_data" [rangePicker]="picker" [dateFilter]="myFilter">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          <mat-error *ngIf="editable_data.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+          <mat-error *ngIf="editable_data.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+        <button mat-icon-button (click)="editCancel()" class="icon__edit">
+          <mat-icon>close</mat-icon>
+        </button>
+        <button mat-icon-button (click)="saveEdit()" class="icon__edit">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+      <div class="container__localization">
+        <mat-icon class="icon">room</mat-icon>
+        <div>
+          <h2 class="big-font gray">{{reservation.accomodationPlaceCity}}</h2>
+          <h4 class="small-font gray">
+            ul.{{reservation.accomodationPlaceStreet}} {{reservation.accomodationPlaceHouse_nr}}</h4>
+        </div>
+      </div>
+      <div class="container__payment">
+        <div>
+          <p class="big-font">Price:{{reservation.accomodationPrice}}zł</p>
+          <p class="small-font">Status:
+            <span class="payment-status" [style.--status-payment]="colorStatusPayment()">
+              {{reservation.paymentStatus}}
+            </span>
+          </p>
+        </div>
+        <button mat-stroked-button [disabled]="isEditBlocked()">
+          <mat-icon>money</mat-icon>
+          Pay
+        </button>
+
+      </div>
+      <div *ngIf="!isEdit" class="container__people">
+        <p class="small-font">People: </p>
+        <p class="small-font">{{reservation.people_nr}}</p>
+      </div>
+      <div *ngIf="isEdit" class="container__people">
+        <p class="small-font">People: </p>
+        <mat-form-field class="people-input" appearance="outline" [formGroup]="editable_data">
+          <input matInput type="number" formControlName="peopleNr">
+        </mat-form-field>
+
+      </div>
     </div>
   </div>
-</div>

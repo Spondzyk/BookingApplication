@@ -3,21 +3,25 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from "../routing/app-routing.module";
 import {BookingsComponent} from "./bookings.component";
-import { BookingsListComponent } from './bookings-list/bookings-list.component';
+import {BookingsListComponent} from './bookings-list/bookings-list.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
-import { BookingsCardComponent } from './bookings-list/bookings-card/bookings-card.component';
+import {BookingsCardComponent} from './bookings-list/bookings-card/bookings-card.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
-import { BookingsBannerComponent } from './bookings-banner/bookings-banner.component';
-import { SingleBookingComponent } from './single-booking/single-booking.component';
+import {BookingsBannerComponent} from './bookings-banner/bookings-banner.component';
+import {SingleBookingComponent} from './single-booking/single-booking.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatButtonModule} from "@angular/material/button";
-import { RankingStarComponent } from './single-booking/ranking-star/ranking-star.component';
-import { SingleBookingInfoComponent } from './single-booking/single-booking-info/single-booking-info.component';
+import {RankingStarComponent} from './single-booking/ranking-star/ranking-star.component';
+import {SingleBookingInfoComponent} from './single-booking/single-booking-info/single-booking-info.component';
 import {MatRippleModule} from "@angular/material/core";
-
+import { DialogNoBookingsComponent } from './bookings-list/dialog-no-bookings/dialog-no-bookings.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core';
+import { DialogCancelBookingComponent } from './single-booking/dialog-cancel-booking/dialog-cancel-booking.component';
 
 
 @NgModule({
@@ -29,6 +33,8 @@ import {MatRippleModule} from "@angular/material/core";
     SingleBookingComponent,
     RankingStarComponent,
     SingleBookingInfoComponent,
+    DialogNoBookingsComponent,
+    DialogCancelBookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,8 @@ import {MatRippleModule} from "@angular/material/core";
     ScrollingModule,
     MatButtonModule,
     MatRippleModule,
+    MatDialogModule,
+    MatDatepickerModule,
   ],
   providers: [],
 
