@@ -20,12 +20,99 @@
 
   <div class="container__content">
     <div class="container__content__image-part">
+
+      <form class="container__content__image-part__form">
+        <mat-form-field class="container__content__image-part__form__full-width"
+                        appearance="outline">
+          <mat-label>Nazwa obiektu</mat-label>
+          <input type="text" matInput [formControl]="nameFormControl">
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Nazwa obiektu jest <strong>obowiązkowa</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+      <div class="container__content__image-part__small-gap"></div>
+
+      <form class="container__content__image-part__form">
+        <mat-form-field class="container__content__image-part__form__full-width"
+                        appearance="outline">
+          <mat-label>Państwo</mat-label>
+          <input type="text" matInput [formControl]="countryFormControl">
+        </mat-form-field>
+      </form>
+
+      <div class="container__content__image-part__gap"></div>
+
       <app-file-upload [currentPlace]="currentPlace"></app-file-upload>
     </div>
 
     <div class="container__content__vl"></div>
 
-    <div class="container__content__description-part"></div>
+    <div class="container__content__description-part">
+
+      <form class="container__content__description-part__form">
+        <mat-form-field class="container__content__description-part__form__full-width"
+                        appearance="outline">
+          <mat-label>Miasto</mat-label>
+          <input type="text" matInput [formControl]="cityFormControl">
+        </mat-form-field>
+      </form>
+
+      <div class="container__content__description-part__small-gap"></div>
+
+      <div class="container__content__description-part__dual-forms">
+        <form class="container__content__description-part__dual-forms__first">
+          <mat-form-field class="container__content__description-part__dual-forms__first__full-width"
+                          appearance="outline">
+            <mat-label>Ulica</mat-label>
+            <input type="text" matInput [formControl]="streetFormControl">
+          </mat-form-field>
+        </form>
+
+        <form class="container__content__description-part__dual-forms__second">
+          <mat-form-field class="container__content__description-part__dual-forms__second__full-width"
+                          appearance="outline">
+            <mat-label>Numer domu</mat-label>
+            <input type="text" matInput [formControl]="houseNrFormControl">
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="container__content__description-part__small-gap"></div>
+
+      <mat-form-field appearance="outline"
+                      class="container__content__description-part__select">
+        <mat-label>Typ obiektu</mat-label>
+        <mat-select [formControl]="type" required>
+          <mat-option *ngFor="let type of typesOfPlace" [value]="type">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="container__content__description-part__small-gap"></div>
+
+      <mat-form-field appearance="outline"
+                      class="container__content__description-part__select">
+        <mat-label>Udogodnienia</mat-label>
+        <mat-select [formControl]="facilities" multiple>
+          <mat-option *ngFor="let facilities of facilitiesList" [value]="facilities">{{facilities.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="container__content__description-part__small-gap"></div>
+
+      <form class="container__content__description-part__description-form">
+        <mat-form-field class="container__content__description-part__description-form__full-width"
+                        appearance="outline">
+          <mat-label>Opis</mat-label>
+          <input type="text" matInput
+                 [formControl]="cityFormControl">
+        </mat-form-field>
+      </form>
+
+    </div>
   </div>
 
 </div>

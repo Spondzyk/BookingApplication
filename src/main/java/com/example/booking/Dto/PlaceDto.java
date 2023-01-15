@@ -1,5 +1,6 @@
 package com.example.booking.Dto;
 
+import com.example.booking.models.Amenities;
 import com.example.booking.models.TypeOfPlace;
 import lombok.Data;
 
@@ -22,6 +23,7 @@ public class PlaceDto {
     private String house_nr;
     private String image_folder_path;
     private TypeOfPlace type_of_place;
+    private Set<Amenities> amenities;
 
     private Set<String> image_name_table;
 

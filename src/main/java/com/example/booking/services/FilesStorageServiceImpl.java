@@ -19,7 +19,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     }
 
     public void setRoot(String additionalPath) {
-        String path = "src/main/resources/static/assets/images/Places/" + additionalPath;
+        String path = "src/main/resources/booking-angular/src/assets/images/Places/" + additionalPath;
         this.root = Paths.get(path);
     }
 

@@ -40,13 +40,6 @@ public class PlaceController {
         return placeService.getAllUserPlace(1L)
                 .stream()
                 .map(place -> modelMapper.map(place, PlaceDto.class))
-                .peek(placeDto -> {
-                    try {
-                        placeDto.listFilesUsingDirectoryStream();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                })
                 .collect(Collectors.toList());
     }
 

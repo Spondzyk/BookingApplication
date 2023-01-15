@@ -1,17 +1,19 @@
 package com.example.booking.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 @Entity
-@Table(name = "facilities")
-public class Facilities {
+@Table(name = "amenities")
+public class Amenities {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +22,8 @@ public class Facilities {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "amenities",
+            fetch = FetchType.LAZY)
+    Set<Place> places;
 }

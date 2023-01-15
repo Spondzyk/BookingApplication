@@ -51,10 +51,14 @@
       <p class="container__content__description-part__description">Typ obiektu</p>
       <p class="container__content__description-part__description-lower">{{currentPlace.type_of_place?.name}}</p>
       <p class="container__content__description-part__description">Udogodnienia</p>
+      <p *ngIf="currentPlace.amenities?.length === 0"
+         class="container__content__description-part__leak-of-amenities">
+        Brak udogodnień
+      </p>
       <ul class="container__content__description-part__list">
-        <li *ngFor="let facilities of currentPlace.facilities"
+        <li *ngFor="let facilities of currentPlace.amenities"
             class="container__content__description-part__list__list-item">
-          {{facilities}}
+          {{facilities.name}}
         </li>
       </ul>
       <p class="container__content__description-part__description">Opis</p>

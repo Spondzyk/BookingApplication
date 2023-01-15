@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {TypeOfPlace} from "../../models/type-of-place.model";
+import {AmenitiesService} from "../../services/amenities.service";
+import {Amenities} from "../../models/amenities-model";
+import {TypeOfPlaceService} from "../../services/type-of-place.service";
 
 @Component({
   selector: 'app-new-place',
@@ -10,7 +15,21 @@ export class NewPlaceComponent implements OnInit {
 
   currentPlace: number = 0;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  nameFormControl = new FormControl('', [Validators.required]);
+  countryFormControl = new FormControl('');
+  cityFormControl = new FormControl('');
+  streetFormControl = new FormControl('');
+  houseNrFormControl = new FormControl('');
+  type = new FormControl<TypeOfPlace>({});
+  facilities = new FormControl<Amenities>({});
+
+
+  typesOfPlace: TypeOfPlace[] = [];
+  facilitiesList: Amenities[] = [];
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+              private formBuilder: FormBuilder, private amenitiesService: AmenitiesService,
+              private typeOfPlaceService: TypeOfPlaceService) {
   }
 
   return = () => {
@@ -21,5 +40,20 @@ export class NewPlaceComponent implements OnInit {
     this.activatedRoute.data.subscribe(({numberOfPlaces}) => {
       this.currentPlace = numberOfPlaces.length + 1
     })
+
+    this.amenitiesService.getAll().subscribe({
+      next: (data) => {
+        this.facilitiesList = data;
+        console.log(data);
+      }
+    });
+
+    this.typeOfPlaceService.getAll().subscribe({
+      next: (data) => {
+        this.typesOfPlace = data;
+        console.log(data);
+      }
+    })
   }
+
 }
