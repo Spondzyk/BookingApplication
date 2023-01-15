@@ -9,12 +9,13 @@ import {BookingsComponent} from "../bookings/bookings.component";
 import {BookingsBannerComponent} from "../bookings/bookings-banner/bookings-banner.component";
 import {SingleBookingComponent} from "../bookings/single-booking/single-booking.component";
 import {PlaceResolver} from "../manage-places/single-place-display/Resolvers/PlaceResolver";
+import {NumberOfPlacesResolver} from "../manage-places/new-place/Resolvers/NumberOfPlacesResolver";
 import {AccountComponent} from "../manage-account/account/account.component";
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
   {path: 'places', component: PlaceListComponent},
-  {path: 'places/add', component: NewPlaceComponent},
+  {path: 'places/add', component: NewPlaceComponent, resolve: {numberOfPlaces: NumberOfPlacesResolver}},
   {path: 'places/:id', component: SinglePlaceDisplayComponent, resolve: {place: PlaceResolver}},
   {path: 'chat', component: ChatComponent},
   {path: 'bookings', component: BookingsComponent, children: [

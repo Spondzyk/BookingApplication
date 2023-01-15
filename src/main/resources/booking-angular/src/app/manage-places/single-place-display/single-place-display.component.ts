@@ -22,7 +22,6 @@ export class SinglePlaceDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe(({place}) => {
-      console.log(place);
       this.currentPlace = place;
     });
   }

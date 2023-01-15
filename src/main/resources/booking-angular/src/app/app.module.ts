@@ -20,6 +20,7 @@ import {PlaceAddressPipe} from "./manage-places/pipes/place-address.pipe";
 import {MatCardModule} from '@angular/material/card';
 import {ImageGalleryComponent} from './manage-places/single-place-display/image-gallery/image-gallery.component';
 import {ScrollViewModule} from '@progress/kendo-angular-scrollview';
+import {FileUploadComponent} from './file-upload/file-upload.component';
 
 import {ManageAccountModule} from "./manage-account/manage-account.module";
 
@@ -34,7 +35,8 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     AcceptanceDialogComponent,
     SinglePlaceCardComponent,
     PlaceAddressPipe,
-    ImageGalleryComponent
+    ImageGalleryComponent,
+    FileUploadComponent
   ],
   imports: [
     MatIconModule,
