@@ -21,6 +21,10 @@ import {MatCardModule} from '@angular/material/card';
 import {ImageGalleryComponent} from './manage-places/single-place-display/image-gallery/image-gallery.component';
 import {ScrollViewModule} from '@progress/kendo-angular-scrollview';
 import {FileUploadComponent} from './file-upload/file-upload.component';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {ManageAccountModule} from "./manage-account/manage-account.module";
 
@@ -50,13 +54,21 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     ChatModule,
     BookingsModule,
     ScrollViewModule,
-    ManageAccountModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    ManageAccountModule
   ],
   exports: [
     MatIconModule,
     MatDialogModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

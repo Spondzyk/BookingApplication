@@ -4,7 +4,7 @@
 
 .container {
   background: #3f51b5;
-  height: 70px;
+  height: 90px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -46,8 +46,13 @@
 
   &__user-info {
 
+    margin-right: 50px;
+    height: 70px;
+    width: 200px;
+
     &__icon{
-      transform: scale(1.7);
+      transform: scale(3);
+      margin-right: 10px;
     }
     &__center{
       display: flex;
@@ -57,8 +62,8 @@
     }
 
     &__nick {
-      margin: 0;
-      font-size: 12px;
+      margin: 0 20px;
+      font-size: 14px;
       color: white;
     }
   }

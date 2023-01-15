@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {TypeOfPlace} from "../../models/type-of-place.model";
 
 @Component({
   selector: 'app-new-place',
@@ -10,7 +12,34 @@ export class NewPlaceComponent implements OnInit {
 
   currentPlace: number = 0;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  nameFormControl = new FormControl('', [Validators.required]);
+  countryFormControl = new FormControl('');
+  cityFormControl = new FormControl('');
+  streetFormControl = new FormControl('');
+  houseNrFormControl = new FormControl('');
+
+  typesOfPlace: TypeOfPlace[] = [
+    {
+      id: 1,
+      name: 'hotel'
+    },
+    {
+      id: 2,
+      name: 'bungalow'
+    },
+    {
+      id: 3,
+      name: 'chatka puchatka'
+    }
+  ];
+
+  facilities = this._formBuilder.group({
+    telewzior: false,
+    balkon: false,
+    zimne_piwo: false,
+  });
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private _formBuilder: FormBuilder) {
   }
 
   return = () => {
