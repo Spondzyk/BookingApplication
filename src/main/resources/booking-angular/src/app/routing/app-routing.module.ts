@@ -13,7 +13,8 @@ import {AccountComponent} from "../manage-account/account/account.component";
 import {ReservationResolver} from "../bookings/single-booking/reservation-resolver";
 
 const routes: Routes = [
-  {path: '', component: MainPageComponent},
+  {path: '', redirectTo: 'home', pathMatch: "prefix"},
+  {path: 'home', component: MainPageComponent},
   {path: 'places', component: PlaceListComponent},
   {path: 'places/add', component: NewPlaceComponent},
   {path: 'places/:id', component: SinglePlaceDisplayComponent},

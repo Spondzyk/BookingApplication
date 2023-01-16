@@ -7,6 +7,7 @@ import com.example.booking.models.Enums.PaymentStatus;
 import com.example.booking.models.Enums.ReservationStatus;
 import com.example.booking.models.Payment;
 import com.example.booking.models.Reservation;
+import com.example.booking.models.User;
 import com.example.booking.repositories.ReservationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,11 @@ public class ReservationService {
     }
 
 
-    public List<ReservationInfoDto> getAllUserReservation(Long user_id) {
+    public List<Reservation> getAllUserReservation(Long user_id) {
         return reservationRepository.findAll()
                 .stream()
                 .filter(place -> place.getUser().getId() == user_id)
                 .sorted((p1, p2) -> p2.getStartDate().compareTo(p1.getStartDate()))
-                .map(this::reservationToInfoDto)
                 .collect(Collectors.toList());
     }
 
@@ -80,6 +80,11 @@ public class ReservationService {
                     .toList().get(0).getStatus().toString());
         }
         return dto;
+    }
+
+    public boolean isReservationOfUser(Long reservationId, User loggedUser){
+        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();
+        return reservation.getUser().getId() == loggedUser.getId();
     }
 
     private boolean validateDateRangeForAccommodation(LocalDate startDate, LocalDate endDate, Reservation res){
