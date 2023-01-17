@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {TypeOfPlace} from "../../models/type-of-place.model";
+import {BaseComponent} from "../../core/abstract-base/base.component";
 
 @Component({
   selector: 'app-new-place',
   templateUrl: './new-place.component.html',
   styleUrls: ['./new-place.component.scss']
 })
-export class NewPlaceComponent implements OnInit {
+export class NewPlaceComponent extends BaseComponent implements OnInit {
 
   currentPlace: number = 0;
 
@@ -40,6 +41,7 @@ export class NewPlaceComponent implements OnInit {
   });
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private _formBuilder: FormBuilder) {
+    super();
   }
 
   return = () => {
