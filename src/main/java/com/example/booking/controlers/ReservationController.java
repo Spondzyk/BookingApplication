@@ -4,7 +4,8 @@ import com.example.booking.Dto.ReservationDto;
 import com.example.booking.Dto.ReservationInfoDto;
 import com.example.booking.models.User;
 import com.example.booking.services.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,10 +21,14 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class ReservationController {
 
-    @Autowired
-    private ReservationService reservationService;
+    private final ReservationService reservationService;
+
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
     @GetMapping("/reservations")
+    @ApiResponse(responseCode = "200", description = "Success list of logged user reservations")
     public List<ReservationInfoDto> getAll() {
         Long loggedUserId = Objects.requireNonNull(getCurrentUser()).getId();
 
@@ -33,22 +38,31 @@ public class ReservationController {
     }
 
     @GetMapping("/reservations/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success logged user reservation received"),
+            @ApiResponse(responseCode = "403", description = "Invalid user tries to open someone reservation"),
+            @ApiResponse(responseCode= "409", description = "Reservation with id not found")})
     public ResponseEntity<ReservationDto> getPlaceById(@PathVariable Long id) {
+        ReservationDto resDto;
+        try {
+            resDto = reservationService.reservationToDto(reservationService.getReservationById(id));
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
 
-        if (!reservationService.isReservationOfUser(id, Objects.requireNonNull(getCurrentUser())))
+        if (reservationService.isNotReservationOfUser(id, Objects.requireNonNull(getCurrentUser())))
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access forbidden");
 
-        ReservationDto resDto = reservationService.reservationToDto(reservationService.getReservationById(id));
-
         return ResponseEntity.ok(resDto);
+
     }
 
     @PutMapping("/reservations/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success logged user reservation updated"),
+            @ApiResponse(responseCode = "403", description = "Invalid user tries to open someone reservation"),
+            @ApiResponse(responseCode= "409", description = "Reservation with id not found")})
     public ResponseEntity<ReservationDto> updatePlace(@PathVariable Long id, @RequestBody ReservationDto reservationDetails) {
-
-        if (!reservationService.isReservationOfUser(id, Objects.requireNonNull(getCurrentUser())))
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access forbidden");
-
         ReservationDto resDto;
         try {
             resDto = reservationService.reservationToDto(reservationService.updateReservation(id, reservationDetails));
@@ -56,16 +70,27 @@ public class ReservationController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
 
+        if (reservationService.isNotReservationOfUser(id, Objects.requireNonNull(getCurrentUser())))
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access forbidden");
+
         return ResponseEntity.ok(resDto);
     }
 
     @PutMapping("reservations/{id}/cancel")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success logged user reservation canceled"),
+            @ApiResponse(responseCode = "403", description = "Invalid user tries to open someone reservation"),
+            @ApiResponse(responseCode= "409", description = "Reservation with id not found")})
     public ResponseEntity<ReservationDto> cancelBooking(@PathVariable Long id) {
+        ReservationDto resDto;
+        try {
+            resDto = reservationService.reservationToDto(reservationService.cancelBooking(id));
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
 
-        if (!reservationService.isReservationOfUser(id, Objects.requireNonNull(getCurrentUser())))
+        if (reservationService.isNotReservationOfUser(id, Objects.requireNonNull(getCurrentUser())))
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access forbidden");
-
-        ReservationDto resDto = reservationService.reservationToDto(reservationService.cancelBooking(id));
 
         return ResponseEntity.ok(resDto);
     }

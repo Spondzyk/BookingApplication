@@ -37,14 +37,13 @@ public class SecurityConfiguration {
                         .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated()
                 )
+                .csrf().disable()
                 .formLogin().permitAll()
                 .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
                 .deleteCookies("JSESSIONID")
-                .and().httpBasic()
-                .and().csrf().disable()
-                .build();
+                .and().build();
     }
 }

@@ -26,7 +26,7 @@ public class BookingApplication {
     }
     @Bean
     public ErrorViewResolver customErrorViewResolver() {
-        final ModelAndView redirectToIndexHtml = new ModelAndView("forward:/index.html", Collections.emptyMap(), HttpStatus.OK);
+        final ModelAndView redirectToIndexHtml = new ModelAndView("forward:/", Collections.emptyMap(), HttpStatus.OK);
         return (request, status, model) -> status == HttpStatus.NOT_FOUND ? redirectToIndexHtml : null;
     }
     public static void main(String[] args) {

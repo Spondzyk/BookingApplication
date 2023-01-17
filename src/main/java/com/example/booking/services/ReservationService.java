@@ -82,9 +82,9 @@ public class ReservationService {
         return dto;
     }
 
-    public boolean isReservationOfUser(Long reservationId, User loggedUser){
+    public boolean isNotReservationOfUser(Long reservationId, User loggedUser){
         Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();
-        return reservation.getUser().getId() == loggedUser.getId();
+        return reservation.getUser().getId() != loggedUser.getId();
     }
 
     private boolean validateDateRangeForAccommodation(LocalDate startDate, LocalDate endDate, Reservation res){
