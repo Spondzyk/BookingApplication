@@ -11,16 +11,18 @@ import {SingleBookingComponent} from "../bookings/single-booking/single-booking.
 import {PlaceResolver} from "../manage-places/single-place-display/Resolvers/PlaceResolver";
 import {NumberOfPlacesResolver} from "../manage-places/new-place/Resolvers/NumberOfPlacesResolver";
 import {AccountComponent} from "../manage-account/account/account.component";
+import {ReservationResolver} from "../bookings/single-booking/reservation-resolver";
 
 const routes: Routes = [
-  {path: '', component: MainPageComponent},
+  {path: '', redirectTo: 'home', pathMatch: "prefix"},
+  {path: 'home', component: MainPageComponent},
   {path: 'places', component: PlaceListComponent},
   {path: 'places/add', component: NewPlaceComponent, resolve: {numberOfPlaces: NumberOfPlacesResolver}},
   {path: 'places/:id', component: SinglePlaceDisplayComponent, resolve: {place: PlaceResolver}},
   {path: 'chat', component: ChatComponent},
   {path: 'bookings', component: BookingsComponent, children: [
       { path: '', component: BookingsBannerComponent },
-      { path: ':id', component: SingleBookingComponent },
+      { path: ':id', component: SingleBookingComponent, resolve: {reservation: ReservationResolver }},
     ]},
   {path: 'account', component: AccountComponent},
 ];

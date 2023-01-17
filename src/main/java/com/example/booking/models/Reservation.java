@@ -54,6 +54,7 @@ public class Reservation {
     @JoinColumn(name = "accomodation_id", nullable = false)
     private Accomodation accomodation;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reservation")
     private List<Payment> payment;
 

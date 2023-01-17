@@ -13,4 +13,5 @@ public class ReservationDto extends ReservationInfoDto {
     private String accomodationDescription;
     private String accomodationPlaceDescription;
     private String accomodationPlaceUserName;
+    private Integer accomodationPeople_nr;
 }

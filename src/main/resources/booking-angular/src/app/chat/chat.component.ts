@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
+import * as http from "http";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-chat',
@@ -6,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent {
-
 }

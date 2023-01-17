@@ -1,0 +1,12 @@
+<h1 mat-dialog-title class="title">Do you want to edit this booking?</h1>
+<div mat-dialog-content class="content">
+  <p class="small-font">Old Date: <s class="grey">{{data.oldStartDate | date: 'dd.MM.YYYY'}} - {{data.oldEndDate | date: 'dd.MM.YYYY'}}</s></p>
+  <p class="big-font">Date: {{data.startDate | date: 'dd.MM.YYYY'}} - {{data.endDate | date: 'dd.MM.YYYY'}}</p>
+  <p class="big-font">People: <s *ngIf="data.peopleNr != data.oldPeopleNr" class="small-font grey">{{data.oldPeopleNr}}</s> {{data.peopleNr}}</p>
+  <p class="big-font">Price: <s *ngIf="newPrice != data.price" class="small-font grey">{{data.price}}</s>  <span class="red">{{newPrice}}</span></p>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="clickNo()" class="center" cdkFocusInitial>NO</button>
+  <button mat-stroked-button [mat-dialog-close]="true" class="center">YES</button>
+</div>

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../services/dto/reservation";
 import {Subscription} from "rxjs";
@@ -19,16 +19,16 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
   id?: number
 
 
-  constructor(private route: ActivatedRoute, private reservationService: ReservationService, public dialog: MatDialog) {
+  constructor(private router: Router, private route: ActivatedRoute, private reservationService: ReservationService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe(params => {
-        this.id = params['id'];
-        this.retrieveReservation();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    this.routeSub = this.route.data.subscribe(({reservation}) => {
+        this.reservation = reservation;
       }
     )
-    this.retrieveReservation();
   }
 
   ngOnDestroy() {
@@ -42,7 +42,7 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
           next: (data) => {
             this.reservation = data;
           },
-          error: (e) => console.error(e)
+          error: (e) => this.router.navigate(['/bookings'])
         });
     }
   }
@@ -61,8 +61,13 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe(id => {
+      this.reservationService.cancelReservation(id).subscribe({
+        next: (data) => {
+          this.reservation = data;
+        },
+        error: (e) => console.error(e)
+      });
     });
   }
 }
