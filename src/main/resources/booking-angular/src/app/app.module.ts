@@ -27,6 +27,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {ManageAccountModule} from "./manage-account/manage-account.module";
+import {BaseComponent} from "./core/abstract-base/base.component";
+import {NotificationMessageComponent} from './core/notification-message/notification-message.component';
+import {AlertTypeIconPipe} from "./core/notification-message/pipes/alert-type-icon.pipe";
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     SinglePlaceCardComponent,
     PlaceAddressPipe,
     ImageGalleryComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    BaseComponent,
+    NotificationMessageComponent,
+    AlertTypeIconPipe
   ],
   imports: [
     MatIconModule,

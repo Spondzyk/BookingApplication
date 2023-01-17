@@ -1,0 +1,21 @@
+<div class="content-container">
+  <div *ngFor="let alert of alerts">
+    <div>
+      <a class="close" (click)="removeAlert(alert)"></a>
+      <div class="single-notification fading">
+        <div [ngClass]="{
+                    'single-notification__success': alert.type == NotificationMessageType.SUCCESS,
+                    'single-notification__error': alert.type == NotificationMessageType.ERROR,
+                    'single-notification__info': alert.type == NotificationMessageType.INFO,
+                    'single-notification__warning': alert.type == NotificationMessageType.WARNING
+                    }">
+          <mat-icon class="content-container__icon">{{alert | alertTypeIcon}}</mat-icon>
+          <div class="content-container__text my-place-font-size-m">
+            <span [innerHTML]="alert.message"></span>
+          </div>
+          <mat-icon class="content-container__close" (click)="removeAlert(alert)">close</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
