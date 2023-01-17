@@ -33,9 +33,6 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
