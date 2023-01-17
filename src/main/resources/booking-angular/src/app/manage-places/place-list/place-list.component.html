@@ -20,11 +20,19 @@
 
   <p class="container__title">Twoje obiekty</p>
 
-  <ul class="container__list">
-    <li *ngFor="let place of places">
-      <app-single-place-card [place]="place"></app-single-place-card>
-    </li>
-  </ul>
+  <ng-template [ngIf]="places.length" [ngIfElse]="info">
+    <ul class="container__list">
+      <li *ngFor="let place of places">
+        <app-single-place-card [place]="place"></app-single-place-card>
+      </li>
+    </ul>
+  </ng-template>
+
+  <ng-template #info>
+    <div class="container__no-place-info">
+      Obecnie w systemie nie ma żadnych dodanych przez ciebie obiektów
+    </div>
+  </ng-template>
 
 
 </div>

@@ -24,4 +24,19 @@ export class FileUploadService {
 
     return this.http.request(req);
   }
+
+  delete(file: string, directory: string): Observable<HttpEvent<any>> {
+
+    const formData: FormData = new FormData();
+
+    formData.append('filename', file);
+    formData.append('directory', directory)
+
+    const req = new HttpRequest('DELETE', `${this.baseUrl}/delete`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req)
+  }
 }

@@ -6,6 +6,7 @@ import {AmenitiesService} from "../../services/amenities.service";
 import {Amenities} from "../../models/amenities-model";
 import {TypeOfPlaceService} from "../../services/type-of-place.service";
 import {BaseComponent} from "../../core/abstract-base/base.component";
+import {NotificationMessageType} from "../../models/notification-message";
 
 @Component({
   selector: 'app-new-place',
@@ -22,8 +23,19 @@ export class NewPlaceComponent extends BaseComponent implements OnInit {
   streetFormControl = new FormControl('');
   houseNrFormControl = new FormControl('');
   type = new FormControl<TypeOfPlace>({});
-  facilities = new FormControl<Amenities>({});
 
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // facilities = new FormControl<Amenities>({});
+
+  facilities = this.formBuilder.group({
+    grill: false,
+    wifi: false,
+    animal: false,
+    view: false,
+    parking: false,
+    swimmingPool: false,
+  });
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   typesOfPlace: TypeOfPlace[] = [];
   facilitiesList: Amenities[] = [];
@@ -35,8 +47,14 @@ export class NewPlaceComponent extends BaseComponent implements OnInit {
   }
 
   return = () => {
+    this.sendMessage('Anulowano dodawanie obiektu', NotificationMessageType.INFO)
     this.router.navigateByUrl('places');
   };
+
+  accept = () => {
+    this.sendMessage('Poprawnie dodano nowy obiekt', NotificationMessageType.SUCCESS)
+    this.router.navigateByUrl('places');
+  }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(({numberOfPlaces}) => {

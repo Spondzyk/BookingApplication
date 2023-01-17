@@ -17,10 +17,16 @@ export class SinglePlaceCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.place.image_folder_path) {
-      this.imagePath = this.place.image_folder_path + "/1.jpg"
+    if (this.place.image_folder_path && this.place.image_name_table) {
+      let image: string;
+      try {
+        image = this.place.image_name_table[0]
+      } catch (error) {
+        image = ''
+      }
+      this.imagePath = this.place.image_folder_path + "/" + image;
     } else {
-      this.imagePath = "../../../assets/images/obrazek.jpg";
+      this.imagePath = "../../../assets/images/brak.png";
     }
   }
 
@@ -28,5 +34,4 @@ export class SinglePlaceCardComponent implements OnInit {
     let url: string = "places/" + String(this.place?.id)
     this.router.navigateByUrl(url);
   }
-
 }

@@ -8,9 +8,10 @@ export class Place {
   city?: string;
   street?: string;
   house_nr?: string;
+  country?: string;
   image_folder_path?: string;
   user_id?: any;
-  type_of_place?: TypeOfPlace;
-  amenities?: Amenities[];
+  type_of_place!: TypeOfPlace;
+  amenities!: Amenities[];
   image_name_table?: string[];
 }

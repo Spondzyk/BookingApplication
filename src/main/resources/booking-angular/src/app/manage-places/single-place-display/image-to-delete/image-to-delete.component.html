@@ -1,0 +1,6 @@
+<div *ngIf="display" class="container">
+  <img src='{{photoSrc}}' alt="{{photoSrc}}" class="container__photo"/>
+  <button (click)="deletePhoto()" class="container__button">
+    <mat-icon class="container__button__icon">highlight_off</mat-icon>
+  </button>
+</div>

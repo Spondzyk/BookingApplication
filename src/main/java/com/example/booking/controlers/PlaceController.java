@@ -36,10 +36,18 @@ public class PlaceController {
 //    }
 
     @GetMapping("/places")
-    public List<PlaceDto> getAll() {
+    public List<PlaceDto> getAll() throws IOException {
         return placeService.getAllUserPlace(1L)
                 .stream()
-                .map(place -> modelMapper.map(place, PlaceDto.class))
+                .map(place -> {
+                    PlaceDto placeDto = modelMapper.map(place, PlaceDto.class);
+                    try {
+                        placeDto.listFilesUsingDirectoryStream();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return placeDto;
+                })
                 .collect(Collectors.toList());
     }
 

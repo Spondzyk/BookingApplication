@@ -5,7 +5,7 @@
       <button mat-raised-button
               color="primary"
               class="container__bar__option-buttons__button"
-              (click)="return()">
+              (click)="accept()">
         <p class="container__bar__option-buttons__button__text">Zatwierdź</p>
       </button>
 
@@ -93,13 +93,52 @@
 
       <div class="container__content__description-part__small-gap"></div>
 
-      <mat-form-field appearance="outline"
-                      class="container__content__description-part__select">
-        <mat-label>Udogodnienia</mat-label>
-        <mat-select [formControl]="facilities" multiple>
-          <mat-option *ngFor="let facilities of facilitiesList" [value]="facilities">{{facilities.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <p class="container__content__description-part__text">Udogodnienia</p>
+
+      <section [formGroup]="facilities">
+        <p>
+          <mat-checkbox class="container__content__description-part__checkbox"
+                        formControlName="grill"
+                        color="primary">
+            Miejsce do grillowania
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part__checkbox"
+                        formControlName="wifi"
+                        color="primary">
+            Darmowe wifi
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part__checkbox"
+                        formControlName="animal"
+                        color="primary">
+            Przyjazne dla zwierząt
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part__checkbox"
+                        formControlName="view"
+                        color="primary">
+            Widok
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part__checkbox"
+                        formControlName="parking"
+                        color="primary">
+            Darmowy parking
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part__checkbox"
+                        formControlName="swimmingPool"
+                        color="primary">
+            Basen
+          </mat-checkbox>
+        </p>
+      </section>
 
       <div class="container__content__description-part__small-gap"></div>
 

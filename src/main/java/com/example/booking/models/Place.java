@@ -27,6 +27,9 @@ public class Place {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "country")
+    private String country;
+
     @Column(name = "city")
     private String city;
 

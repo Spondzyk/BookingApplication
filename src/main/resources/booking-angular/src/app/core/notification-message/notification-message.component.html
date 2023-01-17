@@ -10,7 +10,7 @@
                     'single-notification__warning': alert.type == NotificationMessageType.WARNING
                     }">
           <mat-icon class="content-container__icon">{{alert | alertTypeIcon}}</mat-icon>
-          <div class="content-container__text my-place-font-size-m">
+          <div class="content-container__text">
             <span [innerHTML]="alert.message"></span>
           </div>
           <mat-icon class="content-container__close" (click)="removeAlert(alert)">close</mat-icon>
