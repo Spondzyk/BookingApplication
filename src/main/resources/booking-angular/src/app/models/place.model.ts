@@ -1,4 +1,5 @@
 import {TypeOfPlace} from "./type-of-place.model";
+import {Amenities} from "./amenities-model";
 
 export class Place {
   id?: any;
@@ -10,5 +11,6 @@ export class Place {
   image_folder_path?: string;
   user_id?: any;
   type_of_place?: TypeOfPlace;
-  facilities?: string[];
+  amenities?: Amenities[];
+  image_name_table?: string[];
 }
