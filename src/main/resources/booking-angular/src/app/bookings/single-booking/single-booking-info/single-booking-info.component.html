@@ -1,13 +1,12 @@
 <div class="container">
 
-  <div class="container__image">
+  <div class="container__image" id="image-single-booking">
     <div *ngIf="isEditBlocked()"
          [style.--color-status]="colorStatus()"
          class="container__status">
       <p>{{reservation.status}}</p>
     </div>
-    <img class="container__image__actually"
-         src="../../assets/images/oferta1.jpg">
+    <app-image-gallery [path_image]="reservation.photosUrl"></app-image-gallery>
   </div>
   <div class="container__info">
     <div *ngIf="!isEdit" class="container__info__date">

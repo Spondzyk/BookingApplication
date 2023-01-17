@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Reservation} from "../../../services/dto/reservation";
-import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DateAdapter, MAT_DATE_FORMATS} from "@angular/material/core";
 import {APP_DATE_FORMATS, MyDateAdapter} from "./my-date-adapter";
 import {ReservationService} from "../../../services/reservation.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogCancelBookingComponent} from "../dialog-cancel-booking/dialog-cancel-booking.component";
 import {DialogEditBookingComponent} from "../dialog-edit-booking/dialog-edit-booking.component";
-import {BookingsListComponent} from "../../bookings-list/bookings-list.component";
+import {BaseComponent} from "../../../core/abstract-base/base.component";
+import {NotificationMessageType} from "../../../models/notification-message";
 
 @Component({
   selector: 'app-single-booking-info',
@@ -19,7 +19,7 @@ import {BookingsListComponent} from "../../bookings-list/bookings-list.component
     {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
   ]
 })
-export class SingleBookingInfoComponent implements OnInit {
+export class SingleBookingInfoComponent extends BaseComponent implements OnInit {
   @Input() reservation!: Reservation;
   isEdit = false;
   editable_data = new FormGroup({
@@ -29,6 +29,7 @@ export class SingleBookingInfoComponent implements OnInit {
   });
 
   constructor(private reservationService: ReservationService, public dialog: MatDialog) {
+    super();
   }
 
   ngOnInit(): void {
@@ -78,8 +79,10 @@ export class SingleBookingInfoComponent implements OnInit {
     this.reservationService.updateReservation(data).subscribe({
       next: (data) => {
         this.reservation = data;
+        this.sendMessage("Booking parameters changed",NotificationMessageType.SUCCESS);
       },
-      error: (e: HttpErrorResponse) => console.error(e.error.message)
+      error: (e: HttpErrorResponse) => this.sendMessage(`Booking parameters are
+incorrect due to:  ${e.error.detail}` ,NotificationMessageType.ERROR)
     });
   }
 

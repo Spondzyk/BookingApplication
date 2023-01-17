@@ -4,15 +4,16 @@ import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../services/dto/reservation";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogNoBookingsComponent} from "../bookings-list/dialog-no-bookings/dialog-no-bookings.component";
-import {CancelBookingData, DialogCancelBookingComponent} from "./dialog-cancel-booking/dialog-cancel-booking.component";
+import {DialogCancelBookingComponent} from "./dialog-cancel-booking/dialog-cancel-booking.component";
+import {BaseComponent} from "../../core/abstract-base/base.component";
+import {NotificationMessageType} from "../../models/notification-message";
 
 @Component({
   selector: 'app-single-booking',
   templateUrl: './single-booking.component.html',
   styleUrls: ['./single-booking.component.scss']
 })
-export class SingleBookingComponent implements OnInit, OnDestroy {
+export class SingleBookingComponent extends BaseComponent implements OnInit, OnDestroy {
 
   routeSub!: Subscription;
   reservation?: Reservation;
@@ -20,6 +21,7 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
 
 
   constructor(private router: Router, private route: ActivatedRoute, private reservationService: ReservationService, public dialog: MatDialog) {
+    super();
   }
 
   ngOnInit(): void {
@@ -31,8 +33,9 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
     )
   }
 
-  ngOnDestroy() {
-    this.routeSub.unsubscribe()
+  override ngOnDestroy() {
+    this.routeSub.unsubscribe();
+    super.ngOnDestroy();
   }
 
   retrieveReservation(): void {
@@ -65,6 +68,7 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
       this.reservationService.cancelReservation(id).subscribe({
         next: (data) => {
           this.reservation = data;
+          this.sendMessage("Booking cnaceled succesfully", NotificationMessageType.SUCCESS);
         },
         error: (e) => console.error(e)
       });

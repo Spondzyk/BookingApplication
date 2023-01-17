@@ -16,4 +16,6 @@ export interface Reservation {
   accomodationPlaceDescription?: string;
   accomodationPlaceUserName?: string;
   accomodationPeople_nr?: number;
+  mainPlacePhotoUrl: string;
+  photosUrl?: string[];
 }

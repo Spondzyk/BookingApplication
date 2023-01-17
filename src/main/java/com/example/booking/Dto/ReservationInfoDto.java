@@ -14,4 +14,5 @@ public class ReservationInfoDto {
     private String accomodationPlaceStreet;
     private String accomodationPlaceHouse_nr;
     private String accomodationPlaceName;
+    private String mainPlacePhotoUrl;
 }
