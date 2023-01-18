@@ -61,7 +61,7 @@ public class ReservationController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success logged user reservation updated"),
             @ApiResponse(responseCode = "403", description = "Invalid user tries to open someone reservation"),
-            @ApiResponse(responseCode= "409", description = "Reservation with id not found")})
+            @ApiResponse(responseCode= "409", description = "Reservation data invalid")})
     public ResponseEntity<ReservationDto> updatePlace(@PathVariable Long id, @RequestBody ReservationDto reservationDetails) {
         ReservationDto resDto;
         try {

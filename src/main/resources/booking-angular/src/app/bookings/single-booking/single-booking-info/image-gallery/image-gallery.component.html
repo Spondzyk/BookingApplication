@@ -1,0 +1,7 @@
+<div>
+  <kendo-scrollview [data]="photos" [width]="width" [height]="height" [arrows]="true" [pageable]="true" >
+    <ng-template let-item="item">
+      <img class="image" src='{{item}}' [ngStyle]="{minWidth: width}" draggable="false"/>
+    </ng-template>
+  </kendo-scrollview>
+</div>

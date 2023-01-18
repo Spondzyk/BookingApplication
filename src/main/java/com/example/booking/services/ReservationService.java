@@ -9,12 +9,15 @@ import com.example.booking.models.Payment;
 import com.example.booking.models.Reservation;
 import com.example.booking.models.User;
 import com.example.booking.repositories.ReservationRepository;
+import com.example.booking.util.FilesUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,10 +70,19 @@ public class ReservationService {
         return res;
     }
     public ReservationInfoDto reservationToInfoDto(Reservation reservation) {
-        return modelMapper.map(reservation, ReservationInfoDto.class);
+        ReservationInfoDto dto = modelMapper.map(reservation, ReservationInfoDto.class);
+        String placePath = reservation.getAccomodation().getPlace().getImage_folder_path();
+        dto.setMainPlacePhotoUrl(placePath + "/1.jpg");
+        return dto;
     }
     public ReservationDto reservationToDto(Reservation reservation) {
         ReservationDto dto = modelMapper.map(reservation, ReservationDto.class);
+
+        String placePath = reservation.getAccomodation().getPlace().getImage_folder_path();
+        String accomPath = reservation.getAccomodation().getImage_folder_path();
+        dto.setMainPlacePhotoUrl(placePath + "/1.jpg");
+        dto.setPhotosUrl(combinePhotos(placePath, accomPath));
+
         List<Payment> payments = reservation.getPayment();
         if (payments.isEmpty())
             dto.setPaymentStatus(PaymentStatus.UNPAID.toString());
@@ -82,6 +94,16 @@ public class ReservationService {
         return dto;
     }
 
+    private List<String> combinePhotos(String placePath, String accomPath){
+        List<String> imagesUrl = new ArrayList<>();
+        try {
+            imagesUrl = FilesUtil.listFilesUsingDirectoryStream(accomPath);
+            imagesUrl.addAll(FilesUtil.listFilesUsingDirectoryStream(placePath));
+        } catch (IOException e) {
+            return new ArrayList<>();
+        }
+        return imagesUrl;
+    }
     public boolean isNotReservationOfUser(Long reservationId, User loggedUser){
         Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();
         return reservation.getUser().getId() != loggedUser.getId();

@@ -67,15 +67,16 @@ import {AlertTypeIconPipe} from "./core/notification-message/pipes/alert-type-ic
     MatCheckboxModule,
     ManageAccountModule
   ],
-  exports: [
-    MatIconModule,
-    MatDialogModule,
-    HttpClientModule,
-    MatCardModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule
-  ],
+    exports: [
+        MatIconModule,
+        MatDialogModule,
+        HttpClientModule,
+        MatCardModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        ImageGalleryComponent
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
