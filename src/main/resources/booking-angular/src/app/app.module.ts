@@ -43,7 +43,6 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     HttpClientModule,
     ChatModule,
     BookingsModule,
-    ManageAccountModule,
   ],
   exports: [
     MatIconModule,
