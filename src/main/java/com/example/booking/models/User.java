@@ -59,6 +59,15 @@ public class User implements UserDetails {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "house_nr")
+    private String house_nr;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
