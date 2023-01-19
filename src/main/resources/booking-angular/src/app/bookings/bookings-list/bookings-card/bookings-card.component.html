@@ -4,17 +4,19 @@
           [matRippleUnbounded]="unbounded"
           class="card">
   <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
+    <img mat-card-avatar class="header-image" src="{{reservation.mainPlacePhotoUrl}}" style="width: 50px; height: 50px">
     <p class="header-text">{{reservation.accomodationPlaceName}}</p>
   </mat-card-header>
   <mat-card-content class="content">
     <div>
-      <p class="content__date">{{reservation.startDate | date: 'dd.MM.YYYY'}} - {{reservation.endDate | date: 'dd.MM.YYYY'}}</p>
+      <p class="content__date">{{reservation.startDate | date: 'dd.MM.YYYY'}}
+        - {{reservation.endDate | date: 'dd.MM.YYYY'}}</p>
     </div>
     <div class="content__items">
       <mat-icon>room</mat-icon>
       <p class="content__items__city">{{reservation.accomodationPlaceCity}}</p>
-      <p class="content__items__street">ul.{{reservation.accomodationPlaceStreet}} {{reservation.accomodationPlaceHouse_nr}}</p>
+      <p class="content__items__street">
+        ul.{{reservation.accomodationPlaceStreet}} {{reservation.accomodationPlaceHouse_nr}}</p>
     </div>
   </mat-card-content>
 </mat-card>

@@ -3,7 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Reservation} from "./dto/reservation";
 
-const baseUrl = 'http://localhost:8080/api/reservations';
+const baseUrl = 'api/reservations';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,13 @@ export class ReservationService {
 
   getReservation(id: number): Observable<Reservation>{
     return this.http.get<Reservation>(`${baseUrl}/${id}`)
+  }
+
+  cancelReservation(id: number): Observable<Reservation> {
+    return this.http.put<Reservation>(`${baseUrl}${id}/cancel`, {})
+  }
+
+  updateReservation(data: Reservation): Observable<Reservation> {
+    return this.http.put<Reservation>(`${baseUrl}/${data.id}`, data)
   }
 }

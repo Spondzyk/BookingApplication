@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 
 @Getter
 @Setter
@@ -45,5 +47,11 @@ public class Place {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "type_of_place_id", nullable = false)
     private TypeOfPlace type_of_place;
+
+    @ManyToMany
+    @JoinTable(name = "place_amenities",
+            joinColumns = @JoinColumn(name = "amenities_id"),
+            inverseJoinColumns = @JoinColumn(name = "place_id"))
+    Set<Amenities> amenities;
 
 }

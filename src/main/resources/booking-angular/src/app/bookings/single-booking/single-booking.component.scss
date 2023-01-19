@@ -3,12 +3,16 @@
   flex-direction: column;
   margin: 10px;
 
+  &__base-info{
+    height: max-content;
+  }
   &__action {
     margin-top: 20px;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     padding: 5px 20px 5px 5px;
     display: flex;
+    height: min-content;
   }
 
   &__other {
@@ -58,8 +62,8 @@
     background-size: cover;
   }
   &__name{
-    font-size: 16px;
-
+    padding-top: 8px;
+    font-size: 18px;
   }
 }
 

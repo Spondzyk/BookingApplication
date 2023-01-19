@@ -15,10 +15,21 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {HttpClientModule} from "@angular/common/http";
 import {ChatModule} from "./chat/chat.module";
 import {BookingsModule} from "./bookings/bookings.module";
-import { SinglePlaceCardComponent } from './manage-places/place-list/single-place-card/single-place-card.component';
+import {SinglePlaceCardComponent} from './manage-places/place-list/single-place-card/single-place-card.component';
 import {PlaceAddressPipe} from "./manage-places/pipes/place-address.pipe";
 import {MatCardModule} from '@angular/material/card';
+import {ImageGalleryComponent} from './manage-places/single-place-display/image-gallery/image-gallery.component';
+import {ScrollViewModule} from '@progress/kendo-angular-scrollview';
+import {FileUploadComponent} from './file-upload/file-upload.component';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import {ManageAccountModule} from "./manage-account/manage-account.module";
+import {BaseComponent} from "./core/abstract-base/base.component";
+import {NotificationMessageComponent} from './core/notification-message/notification-message.component';
+import {AlertTypeIconPipe} from "./core/notification-message/pipes/alert-type-icon.pipe";
 
 @NgModule({
   declarations: [
@@ -30,7 +41,12 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     SinglePlaceDisplayComponent,
     AcceptanceDialogComponent,
     SinglePlaceCardComponent,
-    PlaceAddressPipe
+    PlaceAddressPipe,
+    ImageGalleryComponent,
+    FileUploadComponent,
+    BaseComponent,
+    NotificationMessageComponent,
+    AlertTypeIconPipe
   ],
   imports: [
     MatIconModule,
@@ -43,13 +59,24 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
     HttpClientModule,
     ChatModule,
     BookingsModule,
+    ScrollViewModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    ManageAccountModule
   ],
-  exports: [
-    MatIconModule,
-    MatDialogModule,
-    HttpClientModule,
-    MatCardModule
-  ],
+    exports: [
+        MatIconModule,
+        MatDialogModule,
+        HttpClientModule,
+        MatCardModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        ImageGalleryComponent
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

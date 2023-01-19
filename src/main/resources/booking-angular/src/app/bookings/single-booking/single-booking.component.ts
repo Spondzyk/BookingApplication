@@ -1,38 +1,41 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../services/dto/reservation";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogNoBookingsComponent} from "../bookings-list/dialog-no-bookings/dialog-no-bookings.component";
-import {CancelBookingData, DialogCancelBookingComponent} from "./dialog-cancel-booking/dialog-cancel-booking.component";
+import {DialogCancelBookingComponent} from "./dialog-cancel-booking/dialog-cancel-booking.component";
+import {BaseComponent} from "../../core/abstract-base/base.component";
+import {NotificationMessageType} from "../../models/notification-message";
 
 @Component({
   selector: 'app-single-booking',
   templateUrl: './single-booking.component.html',
   styleUrls: ['./single-booking.component.scss']
 })
-export class SingleBookingComponent implements OnInit, OnDestroy {
+export class SingleBookingComponent extends BaseComponent implements OnInit, OnDestroy {
 
   routeSub!: Subscription;
   reservation?: Reservation;
   id?: number
 
 
-  constructor(private route: ActivatedRoute, private reservationService: ReservationService, public dialog: MatDialog) {
+  constructor(private router: Router, private route: ActivatedRoute, private reservationService: ReservationService, public dialog: MatDialog) {
+    super();
   }
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe(params => {
-        this.id = params['id'];
-        this.retrieveReservation();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    this.routeSub = this.route.data.subscribe(({reservation}) => {
+        this.reservation = reservation;
       }
     )
-    this.retrieveReservation();
   }
 
-  ngOnDestroy() {
-    this.routeSub.unsubscribe()
+  override ngOnDestroy() {
+    this.routeSub.unsubscribe();
+    super.ngOnDestroy();
   }
 
   retrieveReservation(): void {
@@ -42,7 +45,7 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
           next: (data) => {
             this.reservation = data;
           },
-          error: (e) => console.error(e)
+          error: (e) => this.router.navigate(['/bookings'])
         });
     }
   }
@@ -61,8 +64,14 @@ export class SingleBookingComponent implements OnInit, OnDestroy {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe(id => {
+      this.reservationService.cancelReservation(id).subscribe({
+        next: (data) => {
+          this.reservation = data;
+          this.sendMessage("Booking cnaceled succesfully", NotificationMessageType.SUCCESS);
+        },
+        error: (e) => console.error(e)
+      });
     });
   }
 }

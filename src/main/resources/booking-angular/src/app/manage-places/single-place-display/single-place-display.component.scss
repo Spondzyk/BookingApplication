@@ -83,6 +83,13 @@
         font-weight: 600;
       }
 
+      &__leak-of-amenities {
+        margin-top: 10px;
+        margin-left: 30px;
+        font-size: 18px;
+        color: #9c9c9c;
+      }
+
       &__description-lower {
         margin-left: 30px;
         margin-top: 10px;
@@ -139,6 +146,11 @@
           margin: auto 10px;
         }
 
+      }
+
+      &__images {
+        margin-left: 20px;
+        margin-top: 80px;
       }
     }
 
