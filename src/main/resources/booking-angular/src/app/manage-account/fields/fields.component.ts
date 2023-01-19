@@ -7,4 +7,12 @@ import {Component} from "@angular/core";
 })
 export class FieldsComponent {
 
+  name = '';
+
+  save() {
+  }
+
+  cancel() {
+
+  }
 }

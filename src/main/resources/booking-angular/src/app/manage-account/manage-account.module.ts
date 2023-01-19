@@ -9,6 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {ButtonsComponent } from './buttons/buttons.component';
 import {FieldsComponent } from './fields/fields.component';
 import {DialogDeleteAccount} from './buttons/dialog-delete-account/dialog-delete-account.component'
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -25,8 +26,10 @@ import {DialogDeleteAccount} from './buttons/dialog-delete-account/dialog-delete
     MatInputModule,
     AppModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule,
 
-  ]
+
+]
 })
 export class ManageAccountModule { }

@@ -1,8 +1,20 @@
-<mat-form-field>
-  <mat-label>Pole 1</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Pole 2</mat-label>
-  <input matInput>
-</mat-form-field>
+<div class="textField">
+  <div class="label-input">
+    <label class="fixed-width-label">Imię:</label>
+    <mat-form-field >
+      <input matInput [(ngModel)]="name" type="text">
+    </mat-form-field>
+  </div>
+  <mat-divider> </mat-divider>
+  <div class="label-input">
+    <label class="fixed-width-label">Nazwisko:</label>
+    <mat-form-field >
+      <input matInput [(ngModel)]="name" type="text">
+    </mat-form-field>
+  </div>
+</div>
+<mat-divider> </mat-divider>
+<div class="buttons-container">
+  <button mat-raised-button (click)="cancel()">Anuluj</button>
+  <button mat-raised-button (click)="save()">Zapisz</button>
+</div>

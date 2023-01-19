@@ -1,0 +1,32 @@
+.buttons-container {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.textField {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.label-input {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+
+}
+
+.label-input label {
+  margin-right: 100px;
+
+}
+
+.fixed-width-label {
+  width: 80px;
+  text-align: left;
+  display:inline-block;
+}
+
