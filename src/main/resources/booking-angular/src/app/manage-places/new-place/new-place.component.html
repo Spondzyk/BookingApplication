@@ -44,7 +44,7 @@
 
       <div class="container__content__image-part__gap"></div>
 
-      <app-file-upload [currentPlace]="currentPlace"></app-file-upload>
+      <app-file-upload [currentPlace]="newPlaceIndex"></app-file-upload>
     </div>
 
     <div class="container__content__vl"></div>
@@ -147,7 +147,7 @@
                         appearance="outline">
           <mat-label>Opis</mat-label>
           <input type="text" matInput
-                 [formControl]="cityFormControl">
+                 [formControl]="descriptionFormControl">
         </mat-form-field>
       </form>
 

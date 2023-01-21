@@ -25,10 +25,10 @@ public class FilesController {
         try {
             storageService.save(file, folderPath);
 
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            message = "Udało dodać się plik: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
+            message = "Plik nie został dodany: " + file.getOriginalFilename() + ". Błąd: " + e.getMessage();
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }
@@ -42,14 +42,14 @@ public class FilesController {
             boolean existed = storageService.delete(dir, filename);
 
             if (existed) {
-                message = "Delete the file successfully: " + filename;
+                message = "Usunięto plik: " + filename;
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
             }
 
-            message = "The file does not exist!";
+            message = "Plik o takiej nazwie nie istnieje!";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessage(message));
         } catch (Exception e) {
-            message = "Could not delete the file: " + filename + ". Error: " + e.getMessage();
+            message = "Nie można usunąc pliku: " + filename + ". Błąd: " + e.getMessage();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage(message));
         }
     }

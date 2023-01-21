@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class PlaceController {
