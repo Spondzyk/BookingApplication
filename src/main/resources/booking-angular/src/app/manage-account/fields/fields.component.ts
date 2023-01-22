@@ -37,7 +37,7 @@ export class FieldsComponent {
       },
       error: (e: HttpErrorResponse) => console.error(e)
     });
-    this.cancel()
+    window.location.reload()
   }
 
   cancel() {
