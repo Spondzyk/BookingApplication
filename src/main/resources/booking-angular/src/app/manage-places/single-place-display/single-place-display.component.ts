@@ -23,6 +23,7 @@ export class SinglePlaceDisplayComponent extends BaseComponent implements OnInit
 
   currentPlace: Place = {type_of_place: {}, amenities: []};
   currentPlaceDirectory: string = ""
+  currentPlaceImageFolderNumber: number = 0;
   placeAddress: string = "";
 
   nameFormControl: FormControl;
@@ -46,7 +47,8 @@ export class SinglePlaceDisplayComponent extends BaseComponent implements OnInit
       console.log(place);
       this.currentPlace = place;
       if (this.currentPlace.image_folder_path) {
-        this.currentPlaceDirectory = this.currentPlace.image_folder_path.substring(30)
+        this.currentPlaceDirectory = this.currentPlace.image_folder_path.substring(30);
+        this.currentPlaceImageFolderNumber = Number(this.currentPlace.image_folder_path.substring(35));
       }
     });
 
@@ -148,6 +150,7 @@ export class SinglePlaceDisplayComponent extends BaseComponent implements OnInit
               response => {
                 console.log(response);
                 this.router.navigate(['/places']);
+                this.sendMessage('Usunięto obiekt', NotificationMessageType.SUCCESS)
               },
               error => {
                 this.sendMessage(error, NotificationMessageType.ERROR)

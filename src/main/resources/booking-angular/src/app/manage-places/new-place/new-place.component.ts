@@ -18,13 +18,13 @@ export class NewPlaceComponent extends BaseComponent implements OnInit {
 
   newPlaceIndex: number = 0;
 
-  nameFormControl = new FormControl('', [Validators.required]);
-  countryFormControl = new FormControl('', [Validators.required]);
-  cityFormControl = new FormControl('', [Validators.required]);
-  streetFormControl = new FormControl('', [Validators.required]);
-  houseNrFormControl = new FormControl('', [Validators.required]);
-  type = new FormControl<TypeOfPlace>({}, [Validators.required]);
-  descriptionFormControl = new FormControl('', [Validators.required]);
+  nameFormControl = new FormControl(null, [Validators.required]);
+  countryFormControl = new FormControl('');
+  cityFormControl = new FormControl('');
+  streetFormControl = new FormControl('');
+  houseNrFormControl = new FormControl('');
+  type = new FormControl<TypeOfPlace | null>(null, [Validators.required]);
+  descriptionFormControl = new FormControl('');
 
   facilities = this.formBuilder.group({
     grill: false,
@@ -56,7 +56,7 @@ export class NewPlaceComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(({numberOfPlaces}) => {
-      this.newPlaceIndex = numberOfPlaces[numberOfPlaces.length - 1].id + 1;
+      this.newPlaceIndex = Number(numberOfPlaces[numberOfPlaces.length - 1].image_folder_path.substring(35)) + 1;
     })
 
     this.amenitiesService.getAll().subscribe({
@@ -77,26 +77,29 @@ export class NewPlaceComponent extends BaseComponent implements OnInit {
   returnCheckboxValue(): Amenities[] {
     let result: Amenities[] = [];
 
-    if (this.facilities.controls['grill'].value === true) {
+    if (this.facilities.controls['grill'].value == true) {
       result.push({id: 1, name: "Miejsce do grillowania"})
-    } else if (this.facilities.controls['wifi'].value === true) {
+    }
+    if (this.facilities.controls['wifi'].value == true) {
       result.push({id: 2, name: "Darmowe wifi"})
-    } else if (this.facilities.controls['animal'].value === true) {
+    }
+    if (this.facilities.controls['animal'].value == true) {
       result.push({id: 3, name: "Przyjazne dla zwierząt"})
-    } else if (this.facilities.controls['view'].value === true) {
+    }
+    if (this.facilities.controls['view'].value == true) {
       result.push({id: 4, name: "Widok"})
-    } else if (this.facilities.controls['parking'].value === true) {
+    }
+    if (this.facilities.controls['parking'].value == true) {
       result.push({id: 5, name: "Darmowy parking"})
-    } else if (this.facilities.controls['swimmingPool'].value === true) {
+    }
+    if (this.facilities.controls['swimmingPool'].value == true) {
       result.push({id: 6, name: "Basen"})
     }
-
     return result
   }
 
   savePlace() {
     const data = {
-      user: {id: 1},
       name: this.nameFormControl.value!,
       description: this.descriptionFormControl.value!,
       city: this.cityFormControl.value!,
@@ -107,12 +110,9 @@ export class NewPlaceComponent extends BaseComponent implements OnInit {
       amenities: this.returnCheckboxValue()
     }
 
-    console.log(data)
-
     this.placeService.create(data)
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.sendMessage("Dodano nowy obiekt", NotificationMessageType.SUCCESS)
         },
         error: (e) => {
@@ -120,5 +120,9 @@ export class NewPlaceComponent extends BaseComponent implements OnInit {
           this.sendMessage("Błąd podczas dodawania obiektów", NotificationMessageType.ERROR)
         }
       });
+  }
+
+  ifFormsIsValid(): boolean {
+    return !this.type.valid || !this.nameFormControl.valid;
   }
 }

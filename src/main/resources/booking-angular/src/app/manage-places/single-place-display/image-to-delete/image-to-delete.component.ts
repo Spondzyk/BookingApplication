@@ -27,10 +27,10 @@ export class ImageToDeleteComponent extends BaseComponent {
 
     this.uploadService.delete(this.photoName, this.photoDirectory).subscribe({
         error: (err: any) => {
-          this.sendMessage("Usuwanie obrazka " + this.photoName + "nie powiodło się", NotificationMessageType.ERROR)
+          this.sendMessage("Usuwanie obrazka nie powiodło się", NotificationMessageType.ERROR)
         }
       }
     )
-    this.sendMessage("Usunięto obrazek " + this.photoName, NotificationMessageType.SUCCESS)
+    this.sendMessage("Usunięto obrazek", NotificationMessageType.SUCCESS)
   }
 }

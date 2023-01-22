@@ -5,7 +5,8 @@
       <button mat-raised-button
               color="primary"
               class="container__bar__option-buttons__button"
-              (click)="accept()">
+              (click)="accept()"
+              [disabled]="ifFormsIsValid()">
         <p class="container__bar__option-buttons__button__text">Zatwierdź</p>
       </button>
 
@@ -89,13 +90,16 @@
             {{type.name}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="type.hasError('required')">
+          Typ obiektu jest <strong>obowiązkowy</strong>
+        </mat-error>
       </mat-form-field>
 
       <div class="container__content__description-part__small-gap"></div>
 
       <p class="container__content__description-part__text">Udogodnienia</p>
 
-      <section [formGroup]="facilities">
+      <section  [formGroup]="facilities">
         <p>
           <mat-checkbox class="container__content__description-part__checkbox"
                         formControlName="grill"
@@ -138,7 +142,7 @@
             Basen
           </mat-checkbox>
         </p>
-      </section>
+      </section >
 
       <div class="container__content__description-part__small-gap"></div>
 
