@@ -1,0 +1,60 @@
+<div class="Title">
+     Dane osobowe
+  </div>
+<div class="Subtitle">
+     Zaktualizuj swoje dane i sprawdź, jak są wykorzystywane.
+  </div>
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="label-input column">
+    <label class="fixed-width-label">Imię</label>
+    <label class="fixed-width-label">{{user!.name}}</label>
+  </div>
+  <div class="label-input column">
+    <label class="fixed-width-label">Nazwisko:</label>
+    <label class="fixed-width-label">{{user!.lastname}}</label>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="label-input column">
+    <label class="fixed-width-label">Adres e-mail:</label>
+     <label class="fixed-width-label">{{user!.email}}</label>
+  </div>
+  <div class="label-input column">
+    <label class="fixed-width-label">Numer Telefonu:</label>
+    <label class="fixed-width-label">{{user!.phoneNumber}}</label>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="label-input column">
+    <label class="fixed-width-label">Płeć:</label>
+    <label class="fixed-width-label">{{user!.gender}}</label>
+
+  </div>
+  <div class="label-input column">
+    <label class="fixed-width-label">Miasto:</label>
+    <label class="fixed-width-label">{{user!.city}}</label>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="label-input column">
+    <label class="fixed-width-label">Ulica:</label>
+    <label class="fixed-width-label">{{user!.street}}</label>
+  </div>
+  <div class="label-input column">
+    <label class="fixed-width-label">Numer domu:</label>
+    <label class="fixed-width-label">{{user!.house_nr}}</label>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="row">
+<div class="buttons">
+
+    <button mat-raised-button (click)="edit()">
+      Edycja
+    </button>
+</div>
+</div>

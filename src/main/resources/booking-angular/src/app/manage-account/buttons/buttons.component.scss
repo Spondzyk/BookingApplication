@@ -1,0 +1,21 @@
+.buttons-container {
+  position: center;
+}
+
+.buttons-container .other-elements{
+  flex: 1;
+}
+.buttons {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  button{
+    margin: 25px;
+    display: block;
+    width: 150px;
+  }
+}
+
+.buttons button:last-child{
+  margin-top: 100px;
+}
