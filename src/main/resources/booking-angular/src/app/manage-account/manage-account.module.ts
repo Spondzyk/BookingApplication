@@ -10,6 +10,7 @@ import {ButtonsComponent } from './buttons/buttons.component';
 import {FieldsComponent } from './fields/fields.component';
 import {DialogDeleteAccount} from './buttons/dialog-delete-account/dialog-delete-account.component'
 import {MatListModule} from "@angular/material/list";
+import {TextComponent } from './text/text.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {MatListModule} from "@angular/material/list";
     ButtonsComponent,
     FieldsComponent,
     DialogDeleteAccount,
+    TextComponent,
 
   ],
   imports: [

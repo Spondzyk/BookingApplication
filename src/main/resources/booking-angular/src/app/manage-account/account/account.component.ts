@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AccountComponent {
   value = 'Clear me';
+  useText = true;
+
+
+
 }
 

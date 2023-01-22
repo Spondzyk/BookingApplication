@@ -1,5 +1,5 @@
 .buttons-container {
-  margin-top: 25px;
+  margin-top: 5px;
   display: flex;
   justify-content: space-between;
 }
@@ -25,10 +25,11 @@
 }
 
 .fixed-width-label {
-  width: 120px;
+  width: 150px;
   text-align: left;
   display:inline-block;
 }
+
 
 .row {
   display: flex;

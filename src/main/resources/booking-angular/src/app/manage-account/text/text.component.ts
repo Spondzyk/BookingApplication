@@ -5,16 +5,19 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {User} from "../../services/dto/user";
 
 @Component({
-  selector: 'app-fields',
-  templateUrl: './fields.component.html',
-  styleUrls: ['./fields.component.scss']
+  selector: 'app-text',
+  templateUrl: './text.component.html',
+  styleUrls: ['./text.component.scss']
 })
-export class FieldsComponent {
+export class TextComponent {
 
   @Input() useText?: boolean;
   @Output() useTextChange = new EventEmitter<boolean>();
+
+
   user?: User;
   constructor(private router: Router, private userService: UserService) {
+    this.retrieveLoggedUser();
   }
 
   ngOnInit(): void {
@@ -30,18 +33,10 @@ export class FieldsComponent {
       });
   }
 
-  save() : void{
-    this.userService.updateAccountData(this.user!).subscribe({
-      next: (data) => {
-        console.log(data)
-      },
-      error: (e: HttpErrorResponse) => console.error(e)
-    });
-    this.cancel()
-  }
 
-  cancel() {
-    this.useText = !this.useText;
-    this.useTextChange.emit(this.useText);
+  edit() {
+  this.useText = !this.useText;
+  this.useTextChange.emit(this.useText);
+
   }
 }

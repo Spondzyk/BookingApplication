@@ -4,6 +4,8 @@
   </div>
   <div class="divider"></div>
   <div class="fields">
-    <app-fields class="grid-item"></app-fields>
+    <app-text *ngIf="useText" [useText]="useText" (useTextChange)="useText = $event"></app-text>
+
+    <app-fields *ngIf="!useText" [useText]="useText" (useTextChange)="useText = $event"></app-fields>
   </div>
 </div>

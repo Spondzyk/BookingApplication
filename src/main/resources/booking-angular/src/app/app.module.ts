@@ -19,13 +19,13 @@ import {SinglePlaceCardComponent} from './manage-places/place-list/single-place-
 import {PlaceAddressPipe} from "./manage-places/pipes/place-address.pipe";
 import {MatCardModule} from '@angular/material/card';
 import {ImageGalleryComponent} from './manage-places/single-place-display/image-gallery/image-gallery.component';
+// @ts-ignore
 import {ScrollViewModule} from '@progress/kendo-angular-scrollview';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
 import {ManageAccountModule} from "./manage-account/manage-account.module";
 import {BaseComponent} from "./core/abstract-base/base.component";
 import {NotificationMessageComponent} from './core/notification-message/notification-message.component';
@@ -65,7 +65,6 @@ import {AlertTypeIconPipe} from "./core/notification-message/pipes/alert-type-ic
     ReactiveFormsModule,
     MatSelectModule,
     MatCheckboxModule,
-    ManageAccountModule
   ],
     exports: [
         MatIconModule,
