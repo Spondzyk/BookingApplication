@@ -1,4 +1,4 @@
-.spacer{
+.spacer {
   flex: 1 1 auto;
 }
 
@@ -25,9 +25,9 @@
     display: flex;
   }
 
-  &__message{
+  &__message {
 
-    &__icon{
+    &__icon {
       color: white;
     }
   }
@@ -45,10 +45,10 @@
   }
 
   &__user-info {
-
     margin-right: 50px;
-    height: 70px;
-    width: 200px;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
 
     &__icon{
       transform: scale(3);

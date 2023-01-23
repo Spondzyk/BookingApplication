@@ -27,7 +27,7 @@
 .fixed-width-label {
   width: 120px;
   text-align: left;
-  display:inline-block;
+  display: inline-block;
 }
 
 .row {
@@ -41,22 +41,48 @@
   margin: 15px 15px;
 }
 
-.Title {
-  margin-top: 50px;
-  font-size: 24px;
-  font-weight: bolder;
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__text {
+    flex-direction: column;
+
+    &__tittle {
+      margin-top: 50px;
+      font-size: 24px;
+      font-weight: bolder;
+    }
+
+    &__subtitle {
+      margin-top: 25px;
+      color: gray;
+      margin-bottom: 5px;
+    }
+
+  }
 }
-.Subtitle {
-  margin-top: 25px;
-  color: gray;
-  margin-bottom: 5px;
-}
+
+//.Title {
+//  margin-top: 50px;
+//  font-size: 24px;
+//  font-weight: bolder;
+//}
+//
+//.Subtitle {
+//  margin-top: 25px;
+//  color: gray;
+//  margin-bottom: 5px;
+//}
+
 .buttons {
   justify-content: center;
   align-items: center;
   display: flex;
   margin: 0 auto;
-  button{
+
+  button {
     height: 50px;
     margin: 50px;
     display: block;

@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 210px;
+
+  &__add-button {
+    display: flex;
+    margin: auto;
+
+    &__input {
+      display: flex;
+      margin: auto;
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 100%;
+
+      &__icon {
+        //display: flex;
+        //margin: auto;
+        //width: 100px;
+        //height: 100px;
+        //padding-top: 5px;
+        //font-size: 90px;
+        transform: scale(5.5);
+      }
+    }
+  }
+
+  &__upload {
+    margin: 40px auto;
+
+    &__button {
+      width: 100px;
+    }
+  }
+}

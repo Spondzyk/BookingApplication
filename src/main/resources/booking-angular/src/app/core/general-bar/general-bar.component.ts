@@ -11,8 +11,12 @@ import {User} from "../../services/dto/user";
 export class GeneralBarComponent implements OnInit{
 
   user?: User;
+  isPicture: boolean = false;
 
   constructor(private router: Router, private userService: UserService) {
+    if (this.user?.imagePath) {
+      this.isPicture = true
+    }
   }
 
   ngOnInit(): void {
@@ -32,7 +36,7 @@ export class GeneralBarComponent implements OnInit{
   }
 
   retrieveLoggedUser(): void {
-    this.userService.getLoggedUser()
+    this.userService.getAccountDate()
       .subscribe({
         next: (data) => {
           this.user = data;
