@@ -33,32 +33,34 @@
 .row {
   display: flex;
   flex-wrap: wrap;
+  height: 90px;
 }
 
 .column {
   flex: 1;
-  margin: 15px 5px;
+  margin: 15px 15px;
 }
 
 .Title {
-  margin-top: 25px;
+  margin-top: 50px;
   font-size: 24px;
   font-weight: bolder;
 }
 .Subtitle {
   margin-top: 25px;
   color: gray;
-
+  margin-bottom: 5px;
 }
 .buttons {
-  display: block;
   justify-content: center;
   align-items: center;
   display: flex;
   margin: 0 auto;
   button{
-    margin: 25px;
+    height: 50px;
+    margin: 50px;
     display: block;
     width: 150px;
   }
 }
+

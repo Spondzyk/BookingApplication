@@ -1,20 +1,20 @@
 <div class="Title">
-     Dane osobowe
-  </div>
+  Dane osobowe
+</div>
 <div class="Subtitle">
-     Zaktualizuj swoje dane i sprawdź, jak są wykorzystywane.
-  </div>
+  Zaktualizuj swoje dane i sprawdź, jak są wykorzystywane.
+</div>
 <mat-divider></mat-divider>
 <div class="row">
   <div class="label-input column">
     <label class="fixed-width-label">Imię</label>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput [(ngModel)]="user!.name" type="text">
     </mat-form-field>
   </div>
   <div class="label-input column">
     <label class="fixed-width-label">Nazwisko:</label>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput [(ngModel)]="user!.lastname" type="text">
     </mat-form-field>
   </div>
@@ -23,13 +23,13 @@
 <div class="row">
   <div class="label-input column">
     <label class="fixed-width-label">Adres e-mail:</label>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput [(ngModel)]="user!.email" type="text">
     </mat-form-field>
   </div>
   <div class="label-input column">
     <label class="fixed-width-label">Numer Telefonu:</label>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput [(ngModel)]="user!.phoneNumber" type="text">
     </mat-form-field>
   </div>
@@ -38,7 +38,7 @@
 <div class="row">
   <div class="label-input column">
     <label class="fixed-width-label">Płeć:</label>
-    <mat-form-field >
+    <mat-form-field>
       <mat-select [(ngModel)]="user!.gender">
         <mat-option value="Kobieta">Kobieta</mat-option>
         <mat-option value="Mężczyzna">Mężczyzna</mat-option>
@@ -47,7 +47,7 @@
   </div>
   <div class="label-input column">
     <label class="fixed-width-label">Miasto:</label>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput [(ngModel)]="user!.city" type="text">
     </mat-form-field>
   </div>
@@ -56,25 +56,25 @@
 <div class="row">
   <div class="label-input column">
     <label class="fixed-width-label">Ulica:</label>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput [(ngModel)]="user!.street" type="text">
     </mat-form-field>
   </div>
   <div class="label-input column">
     <label class="fixed-width-label">Numer domu:</label>
-    <mat-form-field >
+    <mat-form-field>
       <input matInput [(ngModel)]="user!.house_nr" type="text">
     </mat-form-field>
   </div>
 </div>
 <mat-divider></mat-divider>
 <div class="row">
-<div class="buttons">
-    <button mat-raised-button (click)="cancel()">
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)="cancel()">
       Anuluj
     </button>
-    <button mat-raised-button (click)="save()">
+    <button mat-raised-button color="primary" (click)="save()">
       Zatwierdź
     </button>
-</div>
+  </div>
 </div>
