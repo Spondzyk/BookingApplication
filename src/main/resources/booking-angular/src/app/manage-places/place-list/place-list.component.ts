@@ -15,7 +15,7 @@ export class PlaceListComponent extends BaseComponent implements OnInit {
 
   constructor(private router: Router, private placeService: PlaceService) {
     super();
-    this.placeService.getAll()
+    this.placeService.getAllUserPlaces()
       .subscribe({
         next: (data) => {
           this.places = data;

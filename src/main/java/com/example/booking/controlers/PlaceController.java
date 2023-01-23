@@ -38,7 +38,15 @@ public class PlaceController {
     }
 
     @GetMapping("/places")
-    public List<PlaceDto> getAll() throws IOException {
+    public List<PlaceDto> getAll() {
+        return placeService.getAll()
+                .stream()
+                .map(place -> modelMapper.map(place, PlaceDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/places/user")
+    public List<PlaceDto> getAllUser() throws IOException {
         return placeService.getAllUserPlace(Objects.requireNonNull(getCurrentUser()).getId())
                 .stream()
                 .map(place -> {
