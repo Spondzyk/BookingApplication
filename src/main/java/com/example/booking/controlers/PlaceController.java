@@ -79,9 +79,8 @@ public class PlaceController {
 
         Place converted = modelMapper.map(placeDetails, Place.class);
         place = placeService.updatePlace(place, converted);
-        Place updatedPlace = placeService.savePlace(place);
 
-        PlaceDto placeDto = modelMapper.map(updatedPlace, PlaceDto.class);
+        PlaceDto placeDto = modelMapper.map(place, PlaceDto.class);
 
         if (placeService.isNotPlaceOfUser(id, Objects.requireNonNull(getCurrentUser())))
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access forbidden");

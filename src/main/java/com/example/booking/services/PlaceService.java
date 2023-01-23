@@ -66,8 +66,9 @@ public class PlaceService {
         place.setCity(newDetails.getCity());
         place.setStreet(newDetails.getStreet());
         place.setHouse_nr(newDetails.getHouse_nr());
+        place.setAmenities(newDetails.getAmenities());
 
-        return place;
+        return placeRepository.save(place);
     }
 
     public boolean isNotPlaceOfUser(Long placeId, User loggedUser) {

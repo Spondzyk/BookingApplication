@@ -18,15 +18,14 @@ public class FilesStorageServiceImpl implements FilesStorageService {
         return root;
     }
 
-    public void setRoot(String additionalPath) {
-        String path = "src/main/resources/booking-angular/src/assets/images/Places/" + additionalPath;
-        this.root = Paths.get(path);
+    public void setRoot(String directory) {
+        this.root = Paths.get(directory);
     }
 
     @Override
-    public void init(String additionalPath) {
+    public void init(String directory) {
         try {
-            setRoot(additionalPath);
+            setRoot(directory);
             Files.createDirectories(root);
         } catch (IOException e) {
             throw new RuntimeException("Could not initialize folder for upload!");

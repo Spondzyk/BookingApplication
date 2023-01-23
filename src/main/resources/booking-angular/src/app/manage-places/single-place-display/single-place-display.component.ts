@@ -57,7 +57,7 @@ export class SinglePlaceDisplayComponent extends BaseComponent implements OnInit
     this.cityFormControl = new FormControl(this.currentPlace.city);
     this.streetFormControl = new FormControl(this.currentPlace.street);
     this.houseNrFormControl = new FormControl(this.currentPlace.house_nr);
-    this.type = new FormControl(this.currentPlace.type_of_place)
+    this.type = new FormControl(this.currentPlace.type_of_place, [Validators.required])
 
     this.facilities = this.formBuilder.group({
       grill: false,
@@ -101,20 +101,24 @@ export class SinglePlaceDisplayComponent extends BaseComponent implements OnInit
   returnCheckboxValue(): Amenities[] {
     let result: Amenities[] = [];
 
-    if (this.facilities.controls['grill'].value === true) {
+    if (this.facilities.controls['grill'].value == true) {
       result.push({id: 1, name: "Miejsce do grillowania"})
-    } else if (this.facilities.controls['wifi'].value === true) {
+    }
+    if (this.facilities.controls['wifi'].value == true) {
       result.push({id: 2, name: "Darmowe wifi"})
-    } else if (this.facilities.controls['animal'].value === true) {
+    }
+    if (this.facilities.controls['animal'].value == true) {
       result.push({id: 3, name: "Przyjazne dla zwierząt"})
-    } else if (this.facilities.controls['view'].value === true) {
+    }
+    if (this.facilities.controls['view'].value == true) {
       result.push({id: 4, name: "Widok"})
-    } else if (this.facilities.controls['parking'].value === true) {
+    }
+    if (this.facilities.controls['parking'].value == true) {
       result.push({id: 5, name: "Darmowy parking"})
-    } else if (this.facilities.controls['swimmingPool'].value === true) {
+    }
+    if (this.facilities.controls['swimmingPool'].value == true) {
       result.push({id: 6, name: "Basen"})
     }
-
     return result
   }
 
@@ -175,8 +179,36 @@ export class SinglePlaceDisplayComponent extends BaseComponent implements OnInit
   }
 
   accept = async () => {
-    this.sendMessage('Zapisano wyedytowany obiekt', NotificationMessageType.SUCCESS);
+
+    const data = {
+      name: this.nameFormControl.value!,
+      description: this.description.value!,
+      city: this.cityFormControl.value!,
+      street: this.streetFormControl.value!,
+      house_nr: this.houseNrFormControl.value!,
+      country: this.countryFormControl.value!,
+      type_of_place: this.type.value!,
+      amenities: this.returnCheckboxValue(),
+      image_folder_path: this.currentPlace.image_folder_path
+    }
+
+    console.log(data)
+
+    this.placeService.update(this.currentPlace.id, data)
+      .subscribe({
+        next: (res) => {
+          this.sendMessage('Zapisano wyedytowany obiekt', NotificationMessageType.SUCCESS);
+        },
+        error: (e) => {
+          console.error(e)
+          this.sendMessage("Błąd podczas zapisu edytowanego obiektu", NotificationMessageType.ERROR)
+        }
+      });
     this.isEdit = false;
+  }
+
+  ifFormsIsValid(): boolean {
+    return !this.type.valid || !this.nameFormControl.valid;
   }
 
 }

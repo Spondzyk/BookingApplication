@@ -29,7 +29,7 @@ export class FileUploadComponent implements OnInit {
       if (file) {
         this.currentFile = file;
 
-        this.uploadService.upload(this.currentFile, this.currentPlace).subscribe({
+        this.uploadService.upload(this.currentFile, "src/main/resources/booking-angular/src/assets/images/Places/Place" + this.currentPlace).subscribe({
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
             } else if (event instanceof HttpResponse) {

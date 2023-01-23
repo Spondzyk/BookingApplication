@@ -25,7 +25,7 @@ export class ImageToDeleteComponent extends BaseComponent {
     console.log(this.photoName);
     console.log(this.photoDirectory)
 
-    this.uploadService.delete(this.photoName, this.photoDirectory).subscribe({
+    this.uploadService.delete(this.photoName, "src/main/resources/booking-angular/src/assets/images/Places/" + this.photoDirectory).subscribe({
         error: (err: any) => {
           this.sendMessage("Usuwanie obrazka nie powiodło się", NotificationMessageType.ERROR)
         }
