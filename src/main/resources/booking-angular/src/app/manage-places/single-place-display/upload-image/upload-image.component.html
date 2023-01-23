@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="container__add-button">
+
+    <button mat-raised-button
+            (click)="fileInput.click()"
+            class="container__add-button__input">
+      <mat-icon
+        class="container__add-button__input__icon">
+        get_app
+      </mat-icon>
+    </button>
+    <input hidden (change)="selectFile($event)" #fileInput type="file">
+
+  </div>
+
+  <div class="container__upload">
+    <button mat-raised-button
+            color="primary"
+            [disabled]="!selectedFiles"
+            (click)="upload()"
+            class="container__upload__button">
+      Dodaj
+    </button>
+  </div>
+
+</div>

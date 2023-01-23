@@ -20,7 +20,7 @@ export class ImageGalleryComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.place.image_name_table !== undefined) {
-      for (let photoUrl of this.place.image_name_table.reverse()) {
+      for (let photoUrl of this.place.image_name_table) {
         let path = this.place.image_folder_path + "/" + photoUrl;
         this.photos.push(path);
       }

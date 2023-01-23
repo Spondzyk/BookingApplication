@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {Place} from "../../../models/place.model";
 import {PlaceService} from "../../../services/place.service";
 import {Observable} from "rxjs";
+import {Place} from "../../../models/place.model";
 
 @Injectable({providedIn: 'root'})
 export class NumberOfPlacesResolver implements Resolve<Place[]> {
+
   constructor(private service: PlaceService) {
   }
 

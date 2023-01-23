@@ -16,6 +16,10 @@ export class PlaceService {
     return this.http.get(baseUrl);
   }
 
+  getAllUserPlaces(): Observable<any> {
+    return this.http.get(`${baseUrl}/user`);
+  }
+
   get(id: any): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }

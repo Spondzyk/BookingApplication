@@ -30,6 +30,8 @@ import {ManageAccountModule} from "./manage-account/manage-account.module";
 import {BaseComponent} from "./core/abstract-base/base.component";
 import {NotificationMessageComponent} from './core/notification-message/notification-message.component';
 import {AlertTypeIconPipe} from "./core/notification-message/pipes/alert-type-icon.pipe";
+import { ImageToDeleteComponent } from './manage-places/single-place-display/image-to-delete/image-to-delete.component';
+import { UploadImageComponent } from './manage-places/single-place-display/upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import {AlertTypeIconPipe} from "./core/notification-message/pipes/alert-type-ic
     FileUploadComponent,
     BaseComponent,
     NotificationMessageComponent,
-    AlertTypeIconPipe
+    AlertTypeIconPipe,
+    ImageToDeleteComponent,
+    UploadImageComponent
   ],
   imports: [
     MatIconModule,

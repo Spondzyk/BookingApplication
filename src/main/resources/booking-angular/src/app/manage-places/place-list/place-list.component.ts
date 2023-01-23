@@ -11,18 +11,11 @@ import {BaseComponent} from "../../core/abstract-base/base.component";
 })
 export class PlaceListComponent extends BaseComponent implements OnInit {
 
-  places?: Place[];
+  places: Place[] = [];
 
   constructor(private router: Router, private placeService: PlaceService) {
     super();
-  }
-
-  ngOnInit(): void {
-    this.retrievePlaces();
-  }
-
-  retrievePlaces(): void {
-    this.placeService.getAll()
+    this.placeService.getAllUserPlaces()
       .subscribe({
         next: (data) => {
           this.places = data;
@@ -32,8 +25,7 @@ export class PlaceListComponent extends BaseComponent implements OnInit {
       });
   }
 
-  refreshList(): void {
-    this.retrievePlaces();
+  ngOnInit(): void {
   }
 
   return = () => {

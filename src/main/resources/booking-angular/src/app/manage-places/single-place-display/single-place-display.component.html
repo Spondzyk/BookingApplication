@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!isEdit" class="container">
   <div class="container__bar">
     <button mat-button
             color="primary"
@@ -22,7 +22,6 @@
       </button>
     </div>
   </div>
-
   <div class="container__content">
     <div class="container__content__image-part">
       <p class="container__content__image-part__name-of-place">{{currentPlace.name}}</p>
@@ -49,9 +48,9 @@
       <p
         class="container__content__description-part__description-lower">{{placeAddress | placeAddress:currentPlace.city:currentPlace.street:currentPlace.house_nr}}</p>
       <p class="container__content__description-part__description">Typ obiektu</p>
-      <p class="container__content__description-part__description-lower">{{currentPlace.type_of_place?.name}}</p>
+      <p class="container__content__description-part__description-lower">{{currentPlace.type_of_place.name}}</p>
       <p class="container__content__description-part__description">Udogodnienia</p>
-      <p *ngIf="currentPlace.amenities?.length === 0"
+      <p *ngIf="currentPlace.amenities.length === 0"
          class="container__content__description-part__leak-of-amenities">
         Brak udogodnień
       </p>
@@ -64,7 +63,177 @@
       <p class="container__content__description-part__description">Opis</p>
       <p class="container__content__description-part__description-lower">{{currentPlace.description}}</p>
     </div>
-
   </div>
+</div>
+
+
+<div *ngIf="isEdit" class="container">
+  <div class="container__bar">
+    <p class="container__bar__edit-text">Edytowanie obiektu</p>
+    <div class="container__bar__option-buttons">
+      <button mat-raised-button
+              color="primary"
+              class="container__bar__option-buttons__button"
+              (click)="accept()"
+              [disabled]="ifFormsIsValid()">
+        <p class="container__bar__option-buttons__button__text">Zatwierdź</p>
+      </button>
+      <button mat-raised-button
+              color="primary"
+              class="container__bar__option-buttons__button"
+              (click)="cancel()">
+        <p class="container__bar__option-buttons__button__text">Anuluj</p>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="container__content">
+    <div class="container__content__image-part-edit">
+
+      <form class="container__content__image-part-edit__form">
+        <mat-form-field class="container__content__image-part-edit__form__full-width"
+                        appearance="outline">
+          <mat-label>Nazwa obiektu</mat-label>
+          <input type="text" matInput [formControl]="nameFormControl">
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Nazwa obiektu jest <strong>obowiązkowa</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+      <ul class="container__content__image-part-edit__list">
+        <li *ngFor="let photo of currentPlace.image_name_table?.reverse()">
+          <app-image-to-delete [photoSrc]="currentPlace.image_folder_path + '/' + photo"
+                               [photoName]="photo"
+                               [photoDirectory]="currentPlaceDirectory">
+          </app-image-to-delete>
+        </li>
+      </ul>
+
+      <app-upload-image class="gap"
+                        [currentPlace]="currentPlaceImageFolderNumber">
+      </app-upload-image>
+
+    </div>
+
+    <div class="container__content__vl"></div>
+
+    <div class="container__content__description-part">
+
+      <form class="container__content__description-part-edit__form">
+        <mat-form-field class="container__content__description-part-edit__form__full-width"
+                        appearance="outline">
+          <mat-label>Państwo</mat-label>
+          <input type="text" matInput [formControl]="countryFormControl">
+        </mat-form-field>
+      </form>
+
+      <div class="container__content__description-part-edit__small-gap"></div>
+
+      <form class="container__content__description-part-edit__form">
+        <mat-form-field class="container__content__description-part-edit__form__full-width"
+                        appearance="outline">
+          <mat-label>Miasto</mat-label>
+          <input type="text" matInput [formControl]="cityFormControl">
+        </mat-form-field>
+      </form>
+
+      <div class="container__content__description-part-edit__small-gap"></div>
+
+      <div class="container__content__description-part-edit__dual-forms">
+        <form class="container__content__description-part-edit__dual-forms__first">
+          <mat-form-field class="container__content__description-part-edit__dual-forms__first__full-width"
+                          appearance="outline">
+            <mat-label>Ulica</mat-label>
+            <input type="text" matInput [formControl]="streetFormControl">
+          </mat-form-field>
+        </form>
+
+        <form class="container__content__description-part-edit__dual-forms__second">
+          <mat-form-field class="container__content__description-part-edit__dual-forms__second__full-width"
+                          appearance="outline">
+            <mat-label>Numer domu</mat-label>
+            <input type="text" matInput [formControl]="houseNrFormControl">
+          </mat-form-field>
+        </form>
+      </div>
+
+      <div class="container__content__description-part-edit__small-gap"></div>
+
+      <mat-form-field appearance="outline"
+                      class="container__content__description-part-edit__select">
+        <mat-select [formControl]="type" required [placeholder]="type.value.name">
+          <mat-option *ngFor="let type of typesOfPlace" [value]="type">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="type.hasError('required')">
+          Typ obiektu jest <strong>obowiązkowy</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="container__content__description-part-edit__small-gap"></div>
+
+      <p class="container__content__description-part-edit__text">Udogodnienia</p>
+      <section [formGroup]="facilities">
+        <p>
+          <mat-checkbox class="container__content__description-part-edit__checkbox"
+                        formControlName="grill"
+                        color="primary">
+            Miejsce do grillowania
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part-edit__checkbox"
+                        formControlName="wifi"
+                        color="primary">
+            Darmowe wifi
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part-edit__checkbox"
+                        formControlName="animal"
+                        color="primary">
+            Przyjazne dla zwierząt
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part-edit__checkbox"
+                        formControlName="view"
+                        color="primary">
+            Widok
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part-edit__checkbox"
+                        formControlName="parking"
+                        color="primary">
+            Darmowy parking
+          </mat-checkbox>
+        </p>
+        <p>
+          <mat-checkbox class="container__content__description-part-edit__checkbox"
+                        formControlName="swimmingPool"
+                        color="primary">
+            Basen
+          </mat-checkbox>
+        </p>
+      </section>
+
+      <div class="container__content__description-part-edit__small-gap"></div>
+
+      <form class="container__content__description-part-edit__description-form">
+        <mat-form-field class="container__content__description-part-edit__description-form__full-width"
+                        appearance="outline">
+          <mat-label>Opis</mat-label>
+          <input type="text" matInput
+                 [formControl]="description">
+        </mat-form-field>
+      </form>
+
+    </div>
+  </div>
+
 
 </div>

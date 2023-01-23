@@ -7,4 +7,6 @@ public interface FilesStorageService {
     void init(String additionalPath);
 
     void save(MultipartFile file, String additionalPath);
+
+    boolean delete(String directory, String filename);
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -23,7 +24,6 @@ public class Amenities {
     private String name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "amenities",
-            fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "amenities")
     Set<Place> places;
 }

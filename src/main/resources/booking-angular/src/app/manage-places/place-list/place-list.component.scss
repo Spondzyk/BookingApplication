@@ -56,4 +56,12 @@
     gap: 10px;
     list-style-type: none;
   }
+
+  &__no-place-info {
+    display: flex;
+    font-size: 23px;
+    justify-content: flex-start;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
 }

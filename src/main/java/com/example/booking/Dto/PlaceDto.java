@@ -18,6 +18,7 @@ public class PlaceDto {
     private long id;
     private String name;
     private String description;
+    private String country;
     private String city;
     private String street;
     private String house_nr;

@@ -1,20 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FileUploadService} from "../services/file-upload.service";
+import {Component, Input} from '@angular/core';
+import {FileUploadService} from "../../../services/file-upload.service";
+import {NotificationMessageType} from "../../../models/notification-message";
+import {BaseComponent} from "../../../core/abstract-base/base.component";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 @Component({
-  selector: 'app-file-upload',
-  templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss']
+  selector: 'app-upload-image',
+  templateUrl: './upload-image.component.html',
+  styleUrls: ['./upload-image.component.scss']
 })
-export class FileUploadComponent implements OnInit {
-
+export class UploadImageComponent extends BaseComponent {
   selectedFiles?: FileList;
   @Input() currentPlace!: number;
   currentFile?: File;
-  message = '';
 
   constructor(private uploadService: FileUploadService) {
+    super();
   }
 
   selectFile(event: any): void {
@@ -33,18 +34,11 @@ export class FileUploadComponent implements OnInit {
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
             } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
+              this.sendMessage("Dodano obrazek", NotificationMessageType.SUCCESS)
             }
           },
           error: (err: any) => {
-            console.log(err);
-
-            if (err.error && err.error.message) {
-              this.message = err.error.message;
-            } else {
-              this.message = 'Nie można dodać pliku!';
-            }
-
+            this.sendMessage("Dodawanie obrazka nie powiodło się", NotificationMessageType.ERROR)
             this.currentFile = undefined;
           }
         });
@@ -56,6 +50,4 @@ export class FileUploadComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
 }

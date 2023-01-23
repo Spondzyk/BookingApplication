@@ -68,6 +68,7 @@ public class User implements UserDetails {
 
     @Column(name = "house_nr")
     private String house_nr;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

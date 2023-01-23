@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -21,11 +22,14 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "country")
+    private String country;
 
     @Column(name = "city")
     private String city;
@@ -48,10 +52,10 @@ public class Place {
     @JoinColumn(name = "type_of_place_id", nullable = false)
     private TypeOfPlace type_of_place;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "place_amenities",
-            joinColumns = @JoinColumn(name = "amenities_id"),
-            inverseJoinColumns = @JoinColumn(name = "place_id"))
+            joinColumns = @JoinColumn(name = "place_id"),
+            inverseJoinColumns = @JoinColumn(name = "amenities_id"))
     Set<Amenities> amenities;
 
 }

@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -28,11 +25,33 @@ public class FilesController {
         try {
             storageService.save(file, folderPath);
 
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            message = "Udało dodać się plik: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
+            message = "Plik nie został dodany: " + file.getOriginalFilename() + ". Błąd: " + e.getMessage();
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<ResponseMessage> deleteFile(@RequestParam("filename") String filename,
+                                                      @RequestParam("directory") String dir) {
+        String message = "";
+
+        try {
+            boolean existed = storageService.delete(dir, filename);
+
+            if (existed) {
+                message = "Usunięto plik: " + filename;
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            }
+
+            message = "Plik o takiej nazwie nie istnieje!";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessage(message));
+        } catch (Exception e) {
+            message = "Nie można usunąc pliku: " + filename + ". Błąd: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage(message));
+        }
+    }
+
 }
