@@ -4,6 +4,8 @@ import com.example.booking.Dto.PlaceDto;
 import com.example.booking.models.Place;
 import com.example.booking.models.User;
 import com.example.booking.services.UserService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +40,7 @@ public class PlaceController {
     }
 
     @GetMapping("/places")
+    @ApiResponse(responseCode = "200", description = "Success list of all places in database")
     public List<PlaceDto> getAll() {
         return placeService.getAll()
                 .stream()
@@ -46,6 +49,7 @@ public class PlaceController {
     }
 
     @GetMapping("/places/user")
+    @ApiResponse(responseCode = "200", description = "Success list of logged user places")
     public List<PlaceDto> getAllUser() throws IOException {
         return placeService.getAllUserPlace(Objects.requireNonNull(getCurrentUser()).getId())
                 .stream()
@@ -62,6 +66,10 @@ public class PlaceController {
     }
 
     @GetMapping("/places/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success logged user place received"),
+            @ApiResponse(responseCode = "403", description = "Invalid user tries to open someone place"),
+            @ApiResponse(responseCode = "409", description = "Place with id not found")})
     public ResponseEntity<PlaceDto> getPlaceById(@PathVariable Long id) throws IOException {
         Place place = placeService.getPlaceById(id);
         PlaceDto placeDto = modelMapper.map(place, PlaceDto.class);
@@ -74,6 +82,10 @@ public class PlaceController {
     }
 
     @PutMapping("/places/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success logged user place updated"),
+            @ApiResponse(responseCode = "403", description = "Invalid user tries to open someone place"),
+            @ApiResponse(responseCode = "409", description = "Place data invalid")})
     public ResponseEntity<PlaceDto> updatePlace(@PathVariable Long id, @RequestBody PlaceDto placeDetails) {
         Place place = placeService.getPlaceById(id);
 
@@ -89,6 +101,10 @@ public class PlaceController {
     }
 
     @DeleteMapping("/places/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success logged user place deleted"),
+            @ApiResponse(responseCode = "403", description = "Invalid user tries to open someone place"),
+            @ApiResponse(responseCode = "409", description = "Place with id not found")})
     public ResponseEntity<Map<String, Boolean>> deletePlace(@PathVariable Long id) {
         Place place = placeService.getPlaceById(id);
 
@@ -103,6 +119,9 @@ public class PlaceController {
     }
 
     @PostMapping("/places/add")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success logged user place"),
+            @ApiResponse(responseCode = "409", description = "Place data invalid")})
     public ResponseEntity<PlaceDto> createPlace(@RequestBody PlaceDto place) {
 
         Place converted = modelMapper.map(place, Place.class);
