@@ -103,4 +103,132 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+    public static class UserBuilder {
+
+        private Long id;
+
+        private String name;
+
+        private String lastname;
+
+        private String email;
+
+        private Date dateOfBirth;
+
+        private String gender;
+
+        private String imagePath;
+
+        private String phoneNumber;
+
+        private String IBAN;
+
+        private String status;
+        private Set<Place> places;
+
+        private String password;
+
+        private String city;
+
+        private String street;
+
+        private String house_nr;
+
+        public UserBuilder() {
+        }
+
+        public UserBuilder Id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public UserBuilder Name(String name) {
+            this.name = name;
+            return this;
+
+        }
+
+        public UserBuilder Lastname(String lastname) {
+            this.lastname = lastname;
+            return this;
+
+        }
+
+        public UserBuilder Email(String email) {
+            this.email = email;
+            return this;
+
+        }
+
+        public UserBuilder DateOfBirth(Date dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+
+        }
+
+        public UserBuilder Gender(String gender) {
+            this.gender = gender;
+            return this;
+
+        }
+
+        public UserBuilder ImagePath(String imagePath) {
+            this.imagePath = imagePath;
+            return this;
+
+        }
+
+        public UserBuilder PhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+
+        }
+
+        public UserBuilder IBAN(String IBAN) {
+            this.IBAN = IBAN;
+            return this;
+
+        }
+
+        public UserBuilder Status(String status) {
+            this.status = status;
+            return this;
+
+        }
+
+        public UserBuilder Places(Set<Place> places) {
+            this.places = places;
+            return this;
+
+        }
+
+        public UserBuilder Password(String password) {
+            this.password = password;
+            return this;
+
+        }
+
+        public UserBuilder City(String city) {
+            this.city = city;
+            return this;
+
+        }
+
+        public UserBuilder Street(String street) {
+            this.street = street;
+            return this;
+
+        }
+
+        public UserBuilder House_nr(String house_nr) {
+            this.house_nr = house_nr;
+            return this;
+
+        }
+        public User build() {
+            return new User(id, name, lastname, email, dateOfBirth, gender, imagePath, phoneNumber, IBAN, status, places, password, city, street, house_nr);
+        }
+    }
 }
