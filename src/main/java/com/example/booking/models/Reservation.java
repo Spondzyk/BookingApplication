@@ -58,6 +58,68 @@ public class Reservation {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reservation")
     private List<Payment> payment;
 
+    public static class ReservationBuilder{
+        private Long id;
+        private LocalDate startDate;
+        private LocalDate endDate;
+        private ReservationStatus status;
+        private Integer people_nr;
+        private Double price;
+        private User user;
+        private Accomodation accomodation;
+        private List<Payment> payment;
+
+        public ReservationBuilder(){
+        }
+
+        public ReservationBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public ReservationBuilder startDate(LocalDate startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public ReservationBuilder endDate(LocalDate endDate) {
+            this.endDate = endDate;
+            return this;
+        }
+
+        public ReservationBuilder status(ReservationStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public ReservationBuilder people_nr(Integer people_nr) {
+            this.people_nr = people_nr;
+            return this;
+        }
+
+        public ReservationBuilder price(Double price) {
+            this.price = price;
+            return this;
+        }
+
+        public ReservationBuilder user(User user) {
+            this.user = user;
+            return this;
+        }
+
+        public ReservationBuilder accomodation(Accomodation accomodation) {
+            this.accomodation = accomodation;
+            return this;
+        }
+
+        public ReservationBuilder payment(List<Payment> payment) {
+            this.payment = payment;
+            return this;
+        }
+        public Reservation build(){
+            return new Reservation(id, startDate, endDate, status, people_nr, price, user, accomodation, payment);
+        }
+    }
 }
 
 
