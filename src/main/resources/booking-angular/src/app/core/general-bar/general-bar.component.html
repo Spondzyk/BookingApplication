@@ -18,9 +18,11 @@
 
   <button mat-button class="container__user-info"
           (click)="accountClick()">
+
     <mat-icon class="container__user-info__icon">
-      account_circle
+      <img src="{{user?.imagePath}}" style="width: 17px; border-radius: 100%">
     </mat-icon>
+
     <div class="container__user-info__center">
       <p class="container__user-info__nick">Twoje konto</p>
       <p class="container__user-info__nick">{{user?.name}} {{user?.lastname}}</p>

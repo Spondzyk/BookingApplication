@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
+import {BaseComponent} from "../../../core/abstract-base/base.component";
+import {NotificationMessageType} from "../../../models/notification-message";
 
 export interface CancelBookingData {
   id: number,
@@ -17,13 +19,15 @@ export interface CancelBookingData {
   templateUrl: './dialog-delete-account.html',
   styleUrls: ['./dialog-delete-account.component.scss']
 })
-export class DialogDeleteAccount {
+export class DialogDeleteAccount extends BaseComponent {
   constructor(public dialogRef: MatDialogRef<DialogDeleteAccount>,
               @Inject(MAT_DIALOG_DATA) public data: CancelBookingData,private router: Router, private userService: UserService) {
+    super();
   }
 
   clickNo(): void {
     this.dialogRef.close();
+    this.sendMessage("Anulowano usuwanie konta", NotificationMessageType.INFO)
   }
 
   clickYes() {

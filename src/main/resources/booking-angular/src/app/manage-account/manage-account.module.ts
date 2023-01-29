@@ -11,6 +11,7 @@ import {FieldsComponent } from './fields/fields.component';
 import {DialogDeleteAccount} from './buttons/dialog-delete-account/dialog-delete-account.component'
 import {MatListModule} from "@angular/material/list";
 import {TextComponent } from './text/text.component';
+import { UserImageUploadComponent } from './user-image-upload/user-image-upload.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {TextComponent } from './text/text.component';
     FieldsComponent,
     DialogDeleteAccount,
     TextComponent,
+    UserImageUploadComponent,
 
   ],
   imports: [
