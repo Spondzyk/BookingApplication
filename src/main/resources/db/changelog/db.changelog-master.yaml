@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      author: spondzyk
+      id: create-database-sql
+      runOnChange: true
+      sqlFile:
+        path: db/create-database.sql
+  - changeSet:
+      author: spondzyk
+      id: insert-data
+      runOnChange: true
+      sqlFile:
+        path: db/insert-data.sql
+  - changeSet:
+      author: spondzyk
+      id: refactor-user-table
+      runOnChange: true
+      sqlFile:
+        path: db/modify-users.sql
